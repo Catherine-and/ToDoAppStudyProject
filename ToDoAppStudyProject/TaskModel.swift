@@ -10,14 +10,14 @@ import RealmSwift
 
 class Task: Object {
     
-    @objc dynamic var title: String = ""
-    @objc dynamic var text: String?
-    @objc dynamic var date: Date?
+    @objc dynamic var title: String?
+    @objc dynamic var descriptionText: String?
+    @objc dynamic var date: String?
     
-    convenience init(title: String, text: String? = nil, date: Date? = nil) {
+    convenience init(title: String, descriptionText: String? = nil, date: String? = nil) {
         self.init()
         self.title = title
-        self.text = text
+        self.descriptionText = descriptionText
         self.date = date
     }
     

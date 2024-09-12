@@ -11,7 +11,7 @@ let realm = try! Realm()
 
 class StorageManager {
     
-    static func addObject (_ task: Task) {
+    static func saveObject (_ task: Task) {
         
         try! realm.write {
             realm.add(task)
