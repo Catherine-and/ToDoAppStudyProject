@@ -8,7 +8,9 @@
 import UIKit
 
 class CustomTableViewCell: UITableViewCell {
-
+    
+    var isChecked = false
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -17,13 +19,20 @@ class CustomTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        checkBoxButton.addTarget(self, action: #selector(checkBoxButtonClicked(sender:)), for: .touchUpInside)
+        
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
+    }
+    
+    @objc func checkBoxButtonClicked(sender: UIButton) {
+        isChecked = !isChecked  // Toggle the checked state
+        let imageName = isChecked ? "selected" : "unselected"
+        checkBoxButton.setImage(UIImage(named: imageName), for: .normal)
     }
     
 }

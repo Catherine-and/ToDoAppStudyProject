@@ -10,8 +10,7 @@ import RealmSwift
 
 class ToDoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var task: Results<Task>!
-
+    var tasks: Results<Task>!
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var addTaskButtonLabel: UIButton!
@@ -20,7 +19,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        task = realm.objects(Task.self)
+        tasks = realm.objects(Task.self)
         
         let nib = UINib(nibName: "CustomTableViewCell", bundle: nil)
 
@@ -30,24 +29,27 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return task.isEmpty ? 0 : task.count
+        return tasks.isEmpty ? 0 : tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! CustomTableViewCell
          
-        let task = task[indexPath.row]
+        let task = tasks[indexPath.row]
         
         cell.titleLabel.text = task.title
         cell.descriptionLabel.text = task.descriptionText
         cell.dateLabel.text = task.date
-        
+        let imageName = cell.isChecked ? "selected" : "unselected"
+        cell.checkBoxButton.setImage(UIImage(named: imageName), for: .normal)
         
         return cell
+        
     }
     
 
+    
     // MARK: - Navigation
     
     @IBAction func addNewTaskAction(_ sender: UIButton) {
@@ -71,5 +73,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.reloadData()
         
     }
+    
+    
     
 }

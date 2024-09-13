@@ -1375,13 +1375,13 @@ extension Realm {
         guard rlmRealm.actor as? Actor != nil else {
             fatalError("asyncRefresh() can only be called on main thread or actor-isolated Realms")
         }
-        guard let task = RLMRealmRefreshAsync(rlmRealm) else {
+        guard let tasks = RLMRealmRefreshAsync(rlmRealm) else {
             return false
         }
         return await withTaskCancellationHandler {
-            await task.wait()
+            await tasks.wait()
         } onCancel: {
-            task.complete(false)
+            tasks.complete(false)
         }
     }
 
@@ -1485,13 +1485,13 @@ extension Realm {
         guard rlmRealm.actor != nil else {
             fatalError("asyncRefresh() can only be called on main thread or actor-isolated Realms")
         }
-        guard let task = RLMRealmRefreshAsync(rlmRealm) else {
+        guard let tasks = RLMRealmRefreshAsync(rlmRealm) else {
             return false
         }
         return await withTaskCancellationHandler {
-            await task.wait()
+            await tasks.wait()
         } onCancel: {
-            task.complete(false)
+            tasks.complete(false)
         }
     }
 #endif // compiler(<6)

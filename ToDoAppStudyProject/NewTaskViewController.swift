@@ -39,13 +39,14 @@ class NewTaskViewController: UIViewController {
         descriptionTextView.isScrollEnabled = false
         
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         // Make focus to a textField right at the pint of opening a screen
         self.titleText.becomeFirstResponder()
+
     }
+
     
     @objc func updateTextView(notification: Notification) {
         
