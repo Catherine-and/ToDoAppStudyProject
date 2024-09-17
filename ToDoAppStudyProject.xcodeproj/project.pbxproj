@@ -10,6 +10,7 @@
 		013E546317267C51AE5D856D /* Pods_ToDoAppStudyProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7570AC6A4CE5EF4B9920C0E6 /* Pods_ToDoAppStudyProject.framework */; };
 		E7182EB62C8DCBDD0087DD95 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7182EB52C8DCBDD0087DD95 /* CustomTableViewCell.xib */; };
 		E7182EB72C8DCBDD0087DD95 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7182EB42C8DCBDD0087DD95 /* CustomTableViewCell.swift */; };
+		E726B1EE2C9725FF003E2CF4 /* ExistedTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E726B1ED2C9725FF003E2CF4 /* ExistedTaskViewController.swift */; };
 		E7964A032C8C281C00DB6EEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7964A022C8C281C00DB6EEA /* AppDelegate.swift */; };
 		E7964A052C8C281C00DB6EEA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7964A042C8C281C00DB6EEA /* SceneDelegate.swift */; };
 		E7964A0A2C8C281C00DB6EEA /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E7964A092C8C281C00DB6EEA /* Base */; };
@@ -27,6 +28,7 @@
 		7570AC6A4CE5EF4B9920C0E6 /* Pods_ToDoAppStudyProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDoAppStudyProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7182EB42C8DCBDD0087DD95 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		E7182EB52C8DCBDD0087DD95 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		E726B1ED2C9725FF003E2CF4 /* ExistedTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistedTaskViewController.swift; sourceTree = "<group>"; };
 		E79649FF2C8C281C00DB6EEA /* ToDoAppStudyProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoAppStudyProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7964A022C8C281C00DB6EEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7964A042C8C281C00DB6EEA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,8 +89,9 @@
 				E7A7A6D22C8DA2C5003D925D /* Storage.swift */,
 				E7A7A6CE2C8C7E53003D925D /* TaskModel.swift */,
 				E7964A1F2C8C719200DB6EEA /* ToDoListViewController.swift */,
-				E7182EB42C8DCBDD0087DD95 /* CustomTableViewCell.swift */,
 				E7EE40472C9043C300156351 /* NewTaskViewController.swift */,
+				E726B1ED2C9725FF003E2CF4 /* ExistedTaskViewController.swift */,
+				E7182EB42C8DCBDD0087DD95 /* CustomTableViewCell.swift */,
 				E7182EB52C8DCBDD0087DD95 /* CustomTableViewCell.xib */,
 				E7964A082C8C281C00DB6EEA /* Main.storyboard */,
 				E7964A0D2C8C281E00DB6EEA /* LaunchScreen.storyboard */,
@@ -224,6 +227,7 @@
 			files = (
 				E7182EB72C8DCBDD0087DD95 /* CustomTableViewCell.swift in Sources */,
 				E7964A202C8C719200DB6EEA /* ToDoListViewController.swift in Sources */,
+				E726B1EE2C9725FF003E2CF4 /* ExistedTaskViewController.swift in Sources */,
 				E7EE40482C9043C300156351 /* NewTaskViewController.swift in Sources */,
 				E7964A032C8C281C00DB6EEA /* AppDelegate.swift in Sources */,
 				E7A7A6CF2C8C7E53003D925D /* TaskModel.swift in Sources */,

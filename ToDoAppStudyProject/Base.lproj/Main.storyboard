@@ -19,7 +19,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sRN-B4-MRA">
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
-                                <color key="backgroundColor" red="0.78431367870000002" green="0.89803922179999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.93725490570000003" green="0.9529411793" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BiZ-V9-E4f" id="Q6o-4h-9gh"/>
@@ -38,7 +38,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bor-Rz-GMC"/>
-                        <color key="backgroundColor" red="0.78431367870000002" green="0.89803922179999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.93725490570000003" green="0.9529411793" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="sRN-B4-MRA" firstAttribute="top" secondItem="bor-Rz-GMC" secondAttribute="top" id="QEw-Sl-0gu"/>
                             <constraint firstItem="bor-Rz-GMC" firstAttribute="trailing" secondItem="sRN-B4-MRA" secondAttribute="trailing" id="S71-AE-qtB"/>
@@ -52,18 +52,104 @@
                     <connections>
                         <outlet property="addTaskButtonLabel" destination="4at-TJ-NSD" id="9Gp-nu-nL0"/>
                         <outlet property="tableView" destination="sRN-B4-MRA" id="nBO-94-BUU"/>
+                        <segue destination="GjZ-eq-xfA" kind="presentation" identifier="MoveToExistedTaskVC" id="cD5-tF-mUB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gvX-C7-842" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2443.5114503816794" y="-477.46478873239437"/>
         </scene>
+        <!--Existed Task View Controller-->
+        <scene sceneID="sQJ-8x-Qmp">
+            <objects>
+                <viewController storyboardIdentifier="ExistedTaskViewController" id="GjZ-eq-xfA" customClass="ExistedTaskViewController" customModule="ToDoAppStudyProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fOz-md-eiu">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7io-zT-Fkz">
+                                <rect key="frame" x="0.0" y="4" width="393" height="56"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.005622087861" green="0.0047881006180000001" blue="0.046492429119999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <items>
+                                    <navigationItem title="Task" id="29Z-5i-dkJ">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.down" catalog="system" id="F5c-V6-Vt7"/>
+                                        <rightBarButtonItems>
+                                            <barButtonItem image="ellipsis" catalog="system" id="8s2-dA-q24"/>
+                                            <barButtonItem image="deleteTrashButton" style="plain" id="EQA-mv-hqM">
+                                                <color key="tintColor" red="0.92128556966781616" green="0.12786246637236565" blue="0.18850523236364328" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <connections>
+                                                    <action selector="deleteButtonTapped:" destination="GjZ-eq-xfA" id="TWk-gL-Kp1"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="ucj-vh-IBB">
+                                <rect key="frame" x="16" y="120" width="361" height="620"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="What would you like to do?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Obo-cM-K94">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oZe-S8-Dyi">
+                                        <rect key="frame" x="0.0" y="53" width="361" height="567"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="567" id="vcd-fR-XxV"/>
+                                        </constraints>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BVR-mj-pde">
+                                <rect key="frame" x="148" y="70" width="97" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="rHD-o3-n4s"/>
+                                </constraints>
+                                <color key="textColor" systemColor="linkColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6u9-Jz-4RC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ucj-vh-IBB" firstAttribute="top" secondItem="BVR-mj-pde" secondAttribute="bottom" constant="16" id="5Gm-bq-cit"/>
+                            <constraint firstItem="7io-zT-Fkz" firstAttribute="centerX" secondItem="BVR-mj-pde" secondAttribute="centerX" id="7bR-vc-zPJ"/>
+                            <constraint firstItem="BVR-mj-pde" firstAttribute="top" secondItem="7io-zT-Fkz" secondAttribute="bottom" constant="10" id="I9G-c5-OuZ"/>
+                            <constraint firstItem="ucj-vh-IBB" firstAttribute="leading" secondItem="6u9-Jz-4RC" secondAttribute="leading" constant="16" id="OqN-Na-oA7"/>
+                            <constraint firstItem="7io-zT-Fkz" firstAttribute="leading" secondItem="fOz-md-eiu" secondAttribute="leading" id="RJt-Ts-8xa"/>
+                            <constraint firstItem="6u9-Jz-4RC" firstAttribute="trailing" secondItem="BVR-mj-pde" secondAttribute="trailing" constant="148" id="XGe-JF-WRP"/>
+                            <constraint firstItem="6u9-Jz-4RC" firstAttribute="trailing" secondItem="ucj-vh-IBB" secondAttribute="trailing" constant="16" id="YUZ-jM-lWb"/>
+                            <constraint firstItem="7io-zT-Fkz" firstAttribute="top" secondItem="fOz-md-eiu" secondAttribute="top" constant="4" id="dtU-9y-ljn"/>
+                            <constraint firstItem="BVR-mj-pde" firstAttribute="leading" secondItem="6u9-Jz-4RC" secondAttribute="leading" constant="148" id="yMo-ww-Seh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="z4k-Me-uJ6"/>
+                    <size key="freeformSize" width="393" height="852"/>
+                    <connections>
+                        <outlet property="customNavigationBar" destination="7io-zT-Fkz" id="HzC-mB-j7H"/>
+                        <outlet property="dateLabel" destination="BVR-mj-pde" id="JQl-yK-LEi"/>
+                        <outlet property="deleteButton" destination="EQA-mv-hqM" id="N7s-jp-bj3"/>
+                        <outlet property="descriptionLabel" destination="oZe-S8-Dyi" id="mAZ-R0-ynT"/>
+                        <outlet property="titleLabel" destination="Obo-cM-K94" id="xbW-j7-als"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GZl-It-bQg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3235.8778625954196" y="-477.46478873239437"/>
+        </scene>
         <!--New Task View Controller-->
         <scene sceneID="kvQ-0x-lqS">
             <objects>
                 <viewController storyboardIdentifier="NewTaskViewController" modalPresentationStyle="pageSheet" keyboardType="off" id="ddg-4f-ZlQ" customClass="NewTaskViewController" customModule="ToDoAppStudyProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iiP-zF-sZ0">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="201"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="423"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What would you like to do?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AeD-KS-vie">
@@ -75,7 +161,7 @@
                                 </connections>
                             </textField>
                             <textView clipsSubviews="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bKE-cW-W6C">
-                                <rect key="frame" x="16" y="105" width="361" height="35"/>
+                                <rect key="frame" x="16" y="105" width="361" height="257"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -85,7 +171,7 @@
                                 </connections>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="229" translatesAutoresizingMaskIntoConstraints="NO" id="x8A-Uy-OTM">
-                                <rect key="frame" x="16" y="150" width="361" height="35"/>
+                                <rect key="frame" x="16" y="372" width="361" height="35"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cVU-tx-DsD">
                                         <rect key="frame" x="0.0" y="0.0" width="97" height="35"/>
@@ -125,7 +211,7 @@
                         </constraints>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="393" height="500"/>
-                    <size key="freeformSize" width="393" height="201"/>
+                    <size key="freeformSize" width="393" height="423"/>
                     <connections>
                         <outlet property="bottomButtonConstraint" destination="KBc-JB-BfR" id="B4j-B2-AT1"/>
                         <outlet property="date" destination="cVU-tx-DsD" id="Fng-U3-AT0"/>
@@ -137,7 +223,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSk-Ra-CKj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="va1-cF-sW8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3173.2824427480914" y="-353.87323943661971"/>
+            <point key="canvasLocation" x="2441.9847328244273" y="28.87323943661972"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qce-WH-wTT">
@@ -160,9 +246,15 @@
     </scenes>
     <resources>
         <image name="arrow.up" catalog="system" width="118" height="128"/>
+        <image name="chevron.down" catalog="system" width="128" height="70"/>
+        <image name="deleteTrashButton" width="32" height="32"/>
+        <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

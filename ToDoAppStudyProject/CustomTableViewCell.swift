@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol CustomTableViewCellDelegate: AnyObject {
+    func cellTapped(cell: CustomTableViewCell)
+}
+
 class CustomTableViewCell: UITableViewCell {
+    
+    weak var delegate: CustomTableViewCellDelegate?
     
     var isChecked = false
     
@@ -20,8 +26,15 @@ class CustomTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        self.contentView.addGestureRecognizer(tapGesture)
+        
         checkBoxButton.addTarget(self, action: #selector(checkBoxButtonClicked(sender:)), for: .touchUpInside)
         
+    }
+    
+    @objc func handleTap() {
+        delegate?.cellTapped(cell: self)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

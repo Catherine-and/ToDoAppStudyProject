@@ -28,13 +28,10 @@
                                 </constraints>
                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="unselected" buttonSize="small"/>
-                                <connections>
-                                    <action selector="checkBoxTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="QUD-L0-KtH"/>
-                                </connections>
+                                <buttonConfiguration key="configuration" style="plain" image="unselected" buttonSize="medium"/>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="sN2-VT-Smg">
-                                <rect key="frame" x="50" y="16" width="256" height="40"/>
+                                <rect key="frame" x="46" y="16" width="260" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcX-aG-fuc">
                                         <rect key="frame" x="0.0" y="1" width="32.666666666666664" height="13.333333333333334"/>
@@ -68,7 +65,7 @@
                             <constraint firstItem="ZMr-JD-zwd" firstAttribute="leading" secondItem="zcf-ZM-gCh" secondAttribute="leading" constant="16" id="Hol-4k-CPh"/>
                             <constraint firstItem="sN2-VT-Smg" firstAttribute="top" secondItem="zcf-ZM-gCh" secondAttribute="top" constant="16" id="bNa-mv-aqe"/>
                             <constraint firstAttribute="bottom" secondItem="sN2-VT-Smg" secondAttribute="bottom" constant="16" id="goq-8L-5wf"/>
-                            <constraint firstItem="sN2-VT-Smg" firstAttribute="leading" secondItem="ZMr-JD-zwd" secondAttribute="trailing" constant="16" id="zQn-ui-FWw"/>
+                            <constraint firstItem="sN2-VT-Smg" firstAttribute="leading" secondItem="ZMr-JD-zwd" secondAttribute="trailing" constant="12" id="zQn-ui-FWw"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -85,7 +82,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <color key="backgroundColor" red="0.78431367870000002" green="0.89803922179999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" red="0.9529411793" green="0.96470588450000005" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <connections>
                 <outlet property="checkBoxButton" destination="ZMr-JD-zwd" id="M6h-Nh-mub"/>
                 <outlet property="dateLabel" destination="HLZ-yG-Vd3" id="wm3-kW-IF7"/>
@@ -96,7 +93,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="unselected" width="32" height="32"/>
+        <image name="unselected" width="16" height="16"/>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

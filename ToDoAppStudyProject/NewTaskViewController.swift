@@ -17,8 +17,6 @@ class NewTaskViewController: UIViewController {
     @IBOutlet weak var date: UITextField!
     
     @IBOutlet weak var bottomButtonConstraint: NSLayoutConstraint!
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,37 +28,35 @@ class NewTaskViewController: UIViewController {
         
         updateButtonState()
         
-        NotificationCenter.default.addObserver(self, 
+        NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateTextView(notification:)),
                                                name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
         
-        
         descriptionTextView.isScrollEnabled = false
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Make focus to a textField right at the pint of opening a screen
         self.titleText.becomeFirstResponder()
-
     }
-
+    
     
     @objc func updateTextView(notification: Notification) {
         
-            guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-            let keyboardHeight = keyboardFrame.height
-            updateBottomLayoutConstraint(with: keyboardHeight)
+        guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        let keyboardHeight = keyboardFrame.height
+        updateBottomLayoutConstraint(with: keyboardHeight)
+    }
+    
+    func updateBottomLayoutConstraint(with height: CGFloat) {
+        bottomButtonConstraint.constant = height + 16.0
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
         }
-
-        func updateBottomLayoutConstraint(with height: CGFloat) {
-            bottomButtonConstraint.constant = height + 16.0
-            UIView.animate(withDuration: 0.3) {
-                self.view.layoutIfNeeded()
-            }
-        }
+    }
     
     func saveNewTask() {
         
@@ -69,7 +65,7 @@ class NewTaskViewController: UIViewController {
                            date: date.text!)
         
         if currentTask != nil {
-            
+        
             try? realm.write {
                 currentTask?.title = newTask.title
                 currentTask?.descriptionText = newTask.descriptionText
@@ -77,20 +73,11 @@ class NewTaskViewController: UIViewController {
             }
             
         } else {
-            
             StorageManager.saveObject(newTask)
-
         }
-        
-
-
-        
     }
-    
-    
-    
-    }
-    
+}
+
 
 // MARK: TextField delegate
 
@@ -100,30 +87,27 @@ extension NewTaskViewController: UITextFieldDelegate {
         
         if titleText.text?.isEmpty == false || descriptionTextView.text?.isEmpty == false {
             saveButton.isEnabled = true
-            
+    
         } else {
             saveButton.isEnabled = false
         }
     }
-    
 }
-
 
 extension NewTaskViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
-        updateButtonState()
         
+        updateButtonState()
     }
     
     func updateButtonState() {
         
         if descriptionTextView.text.isEmpty == false {
             saveButton.isEnabled = true
+            
         } else {
             saveButton.isEnabled = false
         }
     }
-    
-    
 }
