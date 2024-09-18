@@ -64,17 +64,17 @@ class NewTaskViewController: UIViewController {
                            descriptionText: descriptionTextView.text!,
                            date: date.text!)
         
-        if currentTask != nil {
-        
-            try? realm.write {
-                currentTask?.title = newTask.title
-                currentTask?.descriptionText = newTask.descriptionText
-                currentTask?.date = newTask.date
-            }
+//        if currentTask != nil {
+//        
+//            try? realm.write {
+//                currentTask?.title = newTask.title
+//                currentTask?.descriptionText = newTask.descriptionText
+//                currentTask?.date = newTask.date
+//            }
             
-        } else {
+  //      } else {
             StorageManager.saveObject(newTask)
-        }
+ //       }
     }
 }
 

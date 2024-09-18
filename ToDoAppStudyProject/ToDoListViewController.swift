@@ -76,7 +76,9 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
             sheet.detents = [.custom(resolver: { context in
                 0.15 * context.maximumDetentValue
             })]
+            
         }
+        
         
         self.present(newTaskVC, animated: true)
     }

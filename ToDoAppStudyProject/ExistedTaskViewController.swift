@@ -14,12 +14,15 @@ protocol ExistedTaskVCDelegate: AnyObject {
 class ExistedTaskViewController: UIViewController {
 
     var task: Task?
+
     weak var delegate: ExistedTaskVCDelegate?
     
     @IBOutlet weak var customNavigationBar: UINavigationBar!
+    
     @IBOutlet weak var dateLabel: UITextField!
     @IBOutlet weak var titleLabel: UITextField!
     @IBOutlet weak var descriptionLabel: UITextView!
+    
     @IBOutlet weak var deleteButton: UIBarButtonItem!
     
     override func viewDidLoad() {
