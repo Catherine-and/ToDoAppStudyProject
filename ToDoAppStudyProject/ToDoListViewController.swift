@@ -26,6 +26,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.register(nib, forCellReuseIdentifier: "CustomTableViewCell")
         tableView.delegate = self
         tableView.dataSource = self
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,7 +59,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
             if let existedTaskVC = segue.destination as? ExistedTaskViewController {
                 
                 existedTaskVC.delegate = self
-                existedTaskVC.task = task
+                existedTaskVC.currentTask = task
                 
                 if let sheet = existedTaskVC.sheetPresentationController {
                     sheet.detents = [.medium(), .large()]
@@ -103,7 +104,7 @@ extension ToDoListViewController: CustomTableViewCellDelegate {
 }
 
 extension ToDoListViewController: ExistedTaskVCDelegate {
-    
+
     func didDeleteTask(task: Task) {
         
         if let index = tasks.index(of: task) {
@@ -112,4 +113,9 @@ extension ToDoListViewController: ExistedTaskVCDelegate {
             tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
         }
     }
+    
+    func didChangeTask(task: Task) {
+        tableView.reloadData()
+    }
+    
 }
