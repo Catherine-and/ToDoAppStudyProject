@@ -42,9 +42,9 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         cell.titleLabel.text = task.title
         cell.descriptionLabel.text = task.descriptionText
         cell.dateLabel.text = task.date
+        cell.isChecked = task.isDone
         let imageName = cell.isChecked ? "selected" : "unselected"
         cell.checkBoxButton.setImage(UIImage(named: imageName), for: .normal)
-        
         cell.delegate = self
         
         return cell
@@ -56,8 +56,8 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         
         if segue.identifier == "MoveToExistedTaskVC", let indexPath = sender as? IndexPath {
             let task = tasks[indexPath.row]
+            
             if let existedTaskVC = segue.destination as? ExistedTaskViewController {
-                
                 existedTaskVC.delegate = self
                 existedTaskVC.currentTask = task
                 
@@ -74,20 +74,17 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         let  newTaskVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "NewTaskViewController")
         
         if let sheet = newTaskVC.sheetPresentationController {
+            
             sheet.detents = [.custom(resolver: { context in
                 0.15 * context.maximumDetentValue
             })]
-            
         }
-        
-        
         self.present(newTaskVC, animated: true)
     }
     
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         
         guard let newTaskVC = segue.source as? NewTaskViewController else { return }
-        
         newTaskVC.saveNewTask()
         tableView.reloadData()
         
@@ -96,20 +93,31 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
 
 
 extension ToDoListViewController: CustomTableViewCellDelegate {
+    
     func cellTapped(cell: CustomTableViewCell) {
         if let indexPath = tableView.indexPath(for: cell) {
             performSegue(withIdentifier: "MoveToExistedTaskVC", sender: indexPath)
         }
     }
+    
+    func checkBoxToggled(cell: CustomTableViewCell) {
+        
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        let task = tasks[indexPath.row]
+        
+        try! realm.write {
+            task.isDone = cell.isChecked
+        }
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
 }
 
 extension ToDoListViewController: ExistedTaskVCDelegate {
-
+    
     func didDeleteTask(task: Task) {
-        
         if let index = tasks.index(of: task) {
             StorageManager.deleteObject(task)
-            
             tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
         }
     }
@@ -117,5 +125,4 @@ extension ToDoListViewController: ExistedTaskVCDelegate {
     func didChangeTask(task: Task) {
         tableView.reloadData()
     }
-    
 }

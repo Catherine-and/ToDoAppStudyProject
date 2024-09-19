@@ -9,6 +9,7 @@ import UIKit
 
 protocol CustomTableViewCellDelegate: AnyObject {
     func cellTapped(cell: CustomTableViewCell)
+    func checkBoxToggled(cell: CustomTableViewCell)
 }
 
 class CustomTableViewCell: UITableViewCell {
@@ -43,9 +44,11 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     @objc func checkBoxButtonClicked(sender: UIButton) {
+ 
         isChecked = !isChecked  // Toggle the checked state
         let imageName = isChecked ? "selected" : "unselected"
         checkBoxButton.setImage(UIImage(named: imageName), for: .normal)
+        delegate?.checkBoxToggled(cell: self)
     }
     
 }

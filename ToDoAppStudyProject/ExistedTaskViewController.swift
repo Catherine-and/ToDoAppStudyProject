@@ -30,6 +30,11 @@ class ExistedTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+        titleLabel.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        dateLabel.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        descriptionLabel.delegate = self
+        
         updateUI()
         
         customNavigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -40,30 +45,35 @@ class ExistedTaskViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        changeData()
-        
+            changeData()
+    }
+    
+    @objc private func textFieldDidChange(textField: UITextField) {
+        isTaskChanged = true
     }
     
     func updateUI() {
         
-        titleLabel.text = currentTask?.title
-        descriptionLabel.text = currentTask?.descriptionText
-        dateLabel.text = currentTask?.date
+        guard let task = currentTask, !task.isInvalidated else { return }
         
+        titleLabel.text = task.title
+        descriptionLabel.text = task.descriptionText
+        dateLabel.text = task.date
     }
     
     func changeData() {
-        try? realm.write {
-            currentTask?.title = titleLabel.text
-            currentTask?.descriptionText = descriptionLabel.text
-            currentTask?.date = dateLabel.text
+        
+        if isTaskChanged, let task = currentTask {
+            
+            try? realm.write {
+                task.title = titleLabel.text
+                task.descriptionText = descriptionLabel.text
+                task.date = dateLabel.text
+
+            }
+            self.delegate?.didChangeTask(task: task)
         }
-        
-        self.delegate?.didChangeTask(task: currentTask!)
-        
     }
-    
-    
 
     @IBAction func deleteButtonTapped(_ sender: UIBarButtonItem) {
         
@@ -73,6 +83,7 @@ class ExistedTaskViewController: UIViewController {
             guard let self = self, let task = self.currentTask else { return }
             
             self.delegate?.didDeleteTask(task: task)
+            currentTask = nil
             self.navigationController?.popViewController(animated: true)
             dismiss(animated: true, completion: nil)
 
@@ -87,4 +98,11 @@ class ExistedTaskViewController: UIViewController {
 
     }
     
+}
+
+extension ExistedTaskViewController: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        isTaskChanged = true
+    }
 }

@@ -9,8 +9,6 @@ import UIKit
 
 class NewTaskViewController: UIViewController {
     
-    var currentTask: Task?
-    
     @IBOutlet weak var titleText: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var saveButton: UIButton!
@@ -64,17 +62,7 @@ class NewTaskViewController: UIViewController {
                            descriptionText: descriptionTextView.text!,
                            date: date.text!)
         
-//        if currentTask != nil {
-//        
-//            try? realm.write {
-//                currentTask?.title = newTask.title
-//                currentTask?.descriptionText = newTask.descriptionText
-//                currentTask?.date = newTask.date
-//            }
-            
-  //      } else {
-            StorageManager.saveObject(newTask)
- //       }
+        StorageManager.saveObject(newTask)
     }
 }
 
@@ -87,7 +75,7 @@ extension NewTaskViewController: UITextFieldDelegate {
         
         if titleText.text?.isEmpty == false || descriptionTextView.text?.isEmpty == false {
             saveButton.isEnabled = true
-    
+            
         } else {
             saveButton.isEnabled = false
         }
@@ -97,7 +85,6 @@ extension NewTaskViewController: UITextFieldDelegate {
 extension NewTaskViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
-        
         updateButtonState()
     }
     

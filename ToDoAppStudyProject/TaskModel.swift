@@ -13,6 +13,8 @@ class Task: Object {
     @objc dynamic var title: String?
     @objc dynamic var descriptionText: String?
     @objc dynamic var date: String?
+    @objc dynamic var isDone = false
+
     
     convenience init(title: String, descriptionText: String? = nil, date: String? = nil) {
         self.init()
