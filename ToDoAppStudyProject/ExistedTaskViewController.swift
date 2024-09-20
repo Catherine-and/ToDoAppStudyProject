@@ -32,7 +32,7 @@ class ExistedTaskViewController: UIViewController {
         
 
         titleLabel.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        dateLabel.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        //dateLabel.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         descriptionLabel.delegate = self
         
         updateUI()
@@ -58,7 +58,7 @@ class ExistedTaskViewController: UIViewController {
         
         titleLabel.text = task.title
         descriptionLabel.text = task.descriptionText
-        dateLabel.text = task.date
+        //dateLabel.text = task.date
     }
     
     func changeData() {
@@ -68,7 +68,7 @@ class ExistedTaskViewController: UIViewController {
             try? realm.write {
                 task.title = titleLabel.text
                 task.descriptionText = descriptionLabel.text
-                task.date = dateLabel.text
+                //task.date = dateLabel.text
 
             }
             self.delegate?.didChangeTask(task: task)

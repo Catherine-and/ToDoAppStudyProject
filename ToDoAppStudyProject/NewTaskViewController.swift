@@ -9,10 +9,15 @@ import UIKit
 
 class NewTaskViewController: UIViewController {
     
+    var dateString = ""
+    
     @IBOutlet weak var titleText: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var date: UITextField!
+    //@IBOutlet weak var date: UITextField!
+    
+    @IBOutlet weak var dateButton: UIButton!
+    
     
     @IBOutlet weak var bottomButtonConstraint: NSLayoutConstraint!
     
@@ -57,13 +62,32 @@ class NewTaskViewController: UIViewController {
     }
     
     func saveNewTask() {
+        print("Title: \(titleText.text ?? "")")
+        print("Description: \(descriptionTextView.text ?? "")")
+        print("Date: \(dateString)")
         
         let newTask = Task(title: titleText.text!,
                            descriptionText: descriptionTextView.text!,
-                           date: date.text!)
+                           date: dateString)
         
         StorageManager.saveObject(newTask)
     }
+    
+    
+    @IBAction func dateButtonTapped(_ sender: UIButton) {
+        
+        let calendarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CalendarViewController") as! CalendarViewController
+        
+        calendarVC.delegate = self
+        
+        if let sheet = calendarVC.sheetPresentationController {
+            sheet.detents = [.medium()]
+        }
+        self.present(calendarVC, animated: true)
+    }
+    
+    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {}
+    
 }
 
 
@@ -96,5 +120,16 @@ extension NewTaskViewController: UITextViewDelegate {
         } else {
             saveButton.isEnabled = false
         }
+    }
+}
+
+extension NewTaskViewController: CalendarViewControllerDelegate {
+    
+    func setDate(date: String) {
+        
+        dateButton.setTitle(date, for: .normal)
+        dateButton.tintColor = .blue
+        dateString = date
+        print("\(date)")
     }
 }

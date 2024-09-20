@@ -38,7 +38,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! CustomTableViewCell
         
         let task = tasks[indexPath.row]
-        
+                
         cell.titleLabel.text = task.title
         cell.descriptionLabel.text = task.descriptionText
         cell.dateLabel.text = task.date

@@ -22,10 +22,12 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
+    
     @IBOutlet weak var checkBoxButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.contentView.addGestureRecognizer(tapGesture)

@@ -28,6 +28,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4at-TJ-NSD">
                                 <rect key="frame" x="326.66666666666669" y="691.66666666666663" width="50.333333333333314" height="50.333333333333371"/>
+                                <color key="tintColor" red="0.3380050374218303" green="0.52589886170535971" blue="0.94509804249999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <buttonConfiguration key="configuration" style="filled" imagePadding="0.0" cornerStyle="capsule" buttonSize="large">
                                     <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
@@ -164,7 +165,7 @@
                                                     <constraint firstAttribute="height" constant="18.670000000000002" id="cNH-oX-Ffb"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="ddg-4f-ZlQ" id="dFz-Tk-BRz"/>
                                                 </connections>
@@ -184,22 +185,28 @@
                                             </textView>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="229" translatesAutoresizingMaskIntoConstraints="NO" id="x8A-Uy-OTM" userLabel="Bottom Stack View">
+                                    <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillProportionally" spacing="281" translatesAutoresizingMaskIntoConstraints="NO" id="x8A-Uy-OTM" userLabel="Bottom Stack View">
                                         <rect key="frame" x="0.0" y="292.66666666666669" width="361" height="35"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cVU-tx-DsD">
-                                                <rect key="frame" x="0.0" y="0.0" width="97" height="35"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFE-Xc-XML">
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2q-Qm-Y7s">
+                                                <rect key="frame" x="0.0" y="0.0" width="45" height="35"/>
+                                                <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="calendar" catalog="system" title="" buttonSize="medium">
+                                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="14"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="dateButtonTapped:" destination="ddg-4f-ZlQ" eventType="touchUpInside" id="4hK-GK-tyy"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFE-Xc-XML">
                                                 <rect key="frame" x="326" y="0.0" width="35" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="0OP-id-hsj"/>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="Y5w-dv-Rhi"/>
+                                                    <constraint firstAttribute="width" constant="35" id="Y5w-dv-Rhi"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" cornerStyle="capsule">
+                                                <buttonConfiguration key="configuration" style="filled" cornerStyle="capsule" buttonSize="medium">
                                                     <imageReference key="image" image="arrow.up" catalog="system" symbolScale="medium"/>
                                                 </buttonConfiguration>
                                                 <connections>
@@ -224,7 +231,7 @@
                     <size key="freeformSize" width="393" height="423"/>
                     <connections>
                         <outlet property="bottomButtonConstraint" destination="wm3-gA-LF2" id="wiq-Lo-dq0"/>
-                        <outlet property="date" destination="cVU-tx-DsD" id="Fng-U3-AT0"/>
+                        <outlet property="dateButton" destination="P2q-Qm-Y7s" id="ima-3t-XEw"/>
                         <outlet property="descriptionTextView" destination="bKE-cW-W6C" id="vBd-Ul-QRf"/>
                         <outlet property="saveButton" destination="aFE-Xc-XML" id="DNW-cY-wX6"/>
                         <outlet property="titleText" destination="AeD-KS-vie" id="Tlz-lD-b5X"/>
@@ -235,21 +242,68 @@
             </objects>
             <point key="canvasLocation" x="2441.9847328244273" y="28.52112676056338"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="uMO-vA-3hC">
+        <!--Calendar View Controller-->
+        <scene sceneID="R0G-N0-hxE">
             <objects>
-                <viewController id="1Z4-ZL-YfX" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="yTj-CG-iQr">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                <viewController storyboardIdentifier="CalendarViewController" id="XXf-d5-jwc" customClass="CalendarViewController" customModule="ToDoAppStudyProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Xxt-lm-Nje">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="511"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="ijG-q1-vb0"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="oOI-el-yhJ">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                                <items>
+                                    <navigationItem id="84r-d6-c8s">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="3XL-gE-4qc">
+                                            <connections>
+                                                <segue destination="va1-cF-sW8" kind="unwind" unwindAction="unwindSegue:" id="FcS-ks-bnD"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="ihz-Ed-2vg">
+                                            <connections>
+                                                <action selector="doneButtonTapped:" destination="XXf-d5-jwc" id="iXm-NA-iQq"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <datePicker clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="LCR-cZ-arU">
+                                <rect key="frame" x="36" y="120" width="320" height="307"/>
+                                <connections>
+                                    <action selector="changeDate:" destination="XXf-d5-jwc" eventType="valueChanged" id="zCv-yr-OLF"/>
+                                </connections>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylS-l4-3li">
+                                <rect key="frame" x="165" y="460" width="64" height="35"/>
+                                <color key="tintColor" red="0.92128556969999997" green="0.12786246640000001" blue="0.1885052324" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Clear"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jTK-ph-5Eg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="tintColor" red="0.20392158630000001" green="0.47058826679999999" blue="0.96470588450000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="jTK-ph-5Eg" firstAttribute="trailing" secondItem="ylS-l4-3li" secondAttribute="trailing" constant="164" id="3Ke-54-V5t"/>
+                            <constraint firstItem="jTK-ph-5Eg" firstAttribute="trailing" secondItem="LCR-cZ-arU" secondAttribute="trailing" constant="37" id="7dZ-Xa-qTT"/>
+                            <constraint firstAttribute="bottom" secondItem="ylS-l4-3li" secondAttribute="bottom" constant="16" id="Ja1-bg-Bxl"/>
+                            <constraint firstItem="LCR-cZ-arU" firstAttribute="top" secondItem="jTK-ph-5Eg" secondAttribute="top" constant="61" id="ORH-ha-uoj"/>
+                            <constraint firstItem="jTK-ph-5Eg" firstAttribute="bottom" secondItem="LCR-cZ-arU" secondAttribute="bottom" constant="50" id="am7-2q-PaY"/>
+                            <constraint firstAttribute="trailing" secondItem="oOI-el-yhJ" secondAttribute="trailing" id="bug-Tn-t7r"/>
+                            <constraint firstItem="ylS-l4-3li" firstAttribute="leading" secondItem="jTK-ph-5Eg" secondAttribute="leading" constant="165" id="hF5-e9-aGg"/>
+                            <constraint firstItem="oOI-el-yhJ" firstAttribute="top" secondItem="Xxt-lm-Nje" secondAttribute="top" id="mvx-1L-yJT"/>
+                            <constraint firstItem="oOI-el-yhJ" firstAttribute="leading" secondItem="Xxt-lm-Nje" secondAttribute="leading" id="tav-4a-sNb"/>
+                            <constraint firstItem="LCR-cZ-arU" firstAttribute="leading" secondItem="jTK-ph-5Eg" secondAttribute="leading" constant="36" id="wFB-sL-MCr"/>
+                        </constraints>
                     </view>
-                    <size key="freeformSize" width="393" height="852"/>
+                    <size key="freeformSize" width="393" height="511"/>
+                    <connections>
+                        <outlet property="datePicker" destination="LCR-cZ-arU" id="EHN-JH-dIW"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Thw-pe-6yJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UZ0-8g-Mu3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3237" y="180"/>
+            <point key="canvasLocation" x="2442" y="424"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qce-WH-wTT">
@@ -272,6 +326,7 @@
     </scenes>
     <resources>
         <image name="arrow.up" catalog="system" width="118" height="128"/>
+        <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="chevron.down" catalog="system" width="128" height="70"/>
         <image name="deleteTrashButton" width="32" height="32"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
@@ -281,6 +336,9 @@
         </systemColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
