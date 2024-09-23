@@ -9,7 +9,8 @@ import UIKit
 
 class NewTaskViewController: UIViewController {
     
-    var dateString = ""
+    var selectedDate: Date?
+    var dateTitle = ""
     
     @IBOutlet weak var titleText: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -23,6 +24,10 @@ class NewTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if selectedDate == nil {
+            selectedDate = Date()
+        }
         
         descriptionTextView.delegate = self
         saveButton.isEnabled = false
@@ -64,11 +69,11 @@ class NewTaskViewController: UIViewController {
     func saveNewTask() {
         print("Title: \(titleText.text ?? "")")
         print("Description: \(descriptionTextView.text ?? "")")
-        print("Date: \(dateString)")
+        print("Date: \(dateTitle)")
         
         let newTask = Task(title: titleText.text!,
                            descriptionText: descriptionTextView.text!,
-                           date: dateString)
+                           date: dateTitle)
         
         StorageManager.saveObject(newTask)
     }
@@ -79,6 +84,7 @@ class NewTaskViewController: UIViewController {
         let calendarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CalendarViewController") as! CalendarViewController
         
         calendarVC.delegate = self
+        calendarVC.selectedDate = selectedDate ?? Date()
         
         if let sheet = calendarVC.sheetPresentationController {
             sheet.detents = [.medium()]
@@ -124,12 +130,20 @@ extension NewTaskViewController: UITextViewDelegate {
 }
 
 extension NewTaskViewController: CalendarViewControllerDelegate {
+    func setDate(date: Date) {
+        selectedDate = date
+        updateButtonTitle(with: date)
+    }
     
-    func setDate(date: String) {
+    
+    func updateButtonTitle(with date: Date) {
         
-        dateButton.setTitle(date, for: .normal)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM"
+        let dateString = dateFormatter.string(from: date)
+        dateTitle = dateString
+        
+        dateButton.setTitle(dateString, for: .normal)
         dateButton.tintColor = .blue
-        dateString = date
-        print("\(date)")
     }
 }

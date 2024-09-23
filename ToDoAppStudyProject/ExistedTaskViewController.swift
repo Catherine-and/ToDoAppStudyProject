@@ -15,31 +15,34 @@ protocol ExistedTaskVCDelegate: AnyObject {
 class ExistedTaskViewController: UIViewController {
 
     var currentTask: Task?
+    var selectedDate: Date?
 
     weak var delegate: ExistedTaskVCDelegate?
+    
     var isTaskChanged = false
+    var dateButtonTitle = ""
     
     @IBOutlet weak var customNavigationBar: UINavigationBar!
     
-    @IBOutlet weak var dateLabel: UITextField!
-    @IBOutlet weak var titleLabel: UITextField!
-    @IBOutlet weak var descriptionLabel: UITextView!
+    @IBOutlet weak var titleTF: UITextField!
+    @IBOutlet weak var descriptionTView: UITextView!
     
     @IBOutlet weak var deleteButton: UIBarButtonItem!
+    
+    @IBOutlet weak var dateButtonExistedVC: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        titleLabel.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        //dateLabel.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        descriptionLabel.delegate = self
-        
-        updateUI()
-        
         customNavigationBar.setBackgroundImage(UIImage(), for: .default)
         customNavigationBar.shadowImage = UIImage()
         
+        titleTF.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        
+        descriptionTView.delegate = self
+        
+        updateUI()
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -54,11 +57,12 @@ class ExistedTaskViewController: UIViewController {
     
     func updateUI() {
         
-        guard let task = currentTask, !task.isInvalidated else { return }
+        guard let task = currentTask else { return }
         
-        titleLabel.text = task.title
-        descriptionLabel.text = task.descriptionText
-        //dateLabel.text = task.date
+        titleTF.text = task.title
+        descriptionTView.text = task.descriptionText
+        dateButtonTitle = task.date!
+        dateButtonExistedVC.setTitle(dateButtonTitle, for: .normal)
     }
     
     func changeData() {
@@ -66,8 +70,8 @@ class ExistedTaskViewController: UIViewController {
         if isTaskChanged, let task = currentTask {
             
             try? realm.write {
-                task.title = titleLabel.text
-                task.descriptionText = descriptionLabel.text
+                task.title = titleTF.text
+                task.descriptionText = descriptionTView.text
                 //task.date = dateLabel.text
 
             }
@@ -97,6 +101,20 @@ class ExistedTaskViewController: UIViewController {
         self.present(alertMessage, animated: true)
 
     }
+    
+    @IBAction func dateButtonEVCTapped(_ sender: UIButton) {
+        
+        let calendarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CalendarViewController") as! CalendarViewController
+        
+        let dateFormatter = DateFormatter()
+        
+        calendarVC.selectedDate = selectedDate
+
+        if let sheet = calendarVC.sheetPresentationController {
+            sheet.detents = [.medium()]
+        }
+        self.present(calendarVC, animated: true)
+    } 
     
 }
 

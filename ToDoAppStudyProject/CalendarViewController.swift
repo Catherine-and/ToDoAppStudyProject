@@ -9,19 +9,29 @@ import UIKit
 
 protocol CalendarViewControllerDelegate: AnyObject {
     
-    func setDate(date: String)
+    func setDate(date: Date)
 }
 
 class CalendarViewController: UIViewController {
-
-    weak var delegate: CalendarViewControllerDelegate?
-    var date = ""
     
+    weak var delegate: CalendarViewControllerDelegate?
+    
+    var date = ""
+    var selectedDate: Date?
+    
+    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var datePicker: UIDatePicker!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
+        
+        if let date = selectedDate {
+            datePicker.date = date
+        }
     }
     
 
@@ -37,17 +47,9 @@ class CalendarViewController: UIViewController {
     
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
         
-        self.delegate?.setDate(date: date)
+        let selctedDateFromPicker = datePicker.date
+        self.delegate?.setDate(date: selctedDateFromPicker)
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func changeDate(_ sender: UIDatePicker) {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM"
-        let dateValue = dateFormatter.string(from: sender.date)
-        date = dateValue
-    }
-    
-
 }

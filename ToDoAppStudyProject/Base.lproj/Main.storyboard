@@ -87,17 +87,8 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BVR-mj-pde">
-                                <rect key="frame" x="148" y="70" width="97" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="rHD-o3-n4s"/>
-                                </constraints>
-                                <color key="textColor" systemColor="linkColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
-                            </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="ucj-vh-IBB">
-                                <rect key="frame" x="16" y="120" width="361" height="620"/>
+                                <rect key="frame" x="16" y="119.33333333333331" width="361" height="620"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="What would you like to do?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Obo-cM-K94">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="34"/>
@@ -116,29 +107,40 @@
                                     </textView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccp-vI-Pj3">
+                                <rect key="frame" x="169" y="74" width="55" height="30.333333333333329"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Date">
+                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="dateButtonEVCTapped:" destination="GjZ-eq-xfA" eventType="touchUpInside" id="4Z3-Gx-HOt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6u9-Jz-4RC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ucj-vh-IBB" firstAttribute="top" secondItem="BVR-mj-pde" secondAttribute="bottom" constant="16" id="5Gm-bq-cit"/>
-                            <constraint firstItem="7io-zT-Fkz" firstAttribute="centerX" secondItem="BVR-mj-pde" secondAttribute="centerX" id="7bR-vc-zPJ"/>
-                            <constraint firstItem="BVR-mj-pde" firstAttribute="top" secondItem="7io-zT-Fkz" secondAttribute="bottom" constant="10" id="I9G-c5-OuZ"/>
+                            <constraint firstItem="7io-zT-Fkz" firstAttribute="centerX" secondItem="ucj-vh-IBB" secondAttribute="centerX" id="2pg-BY-RLg"/>
+                            <constraint firstItem="Obo-cM-K94" firstAttribute="top" secondItem="ccp-vI-Pj3" secondAttribute="bottom" constant="15" id="3h6-lh-SMM"/>
+                            <constraint firstItem="ccp-vI-Pj3" firstAttribute="leading" relation="lessThanOrEqual" secondItem="6u9-Jz-4RC" secondAttribute="leading" constant="169" id="6tA-UD-nCr"/>
+                            <constraint firstItem="7io-zT-Fkz" firstAttribute="centerX" secondItem="ccp-vI-Pj3" secondAttribute="centerX" id="DUe-15-bcm"/>
+                            <constraint firstItem="ccp-vI-Pj3" firstAttribute="top" secondItem="7io-zT-Fkz" secondAttribute="bottom" constant="14" id="Dl6-yW-9uc"/>
                             <constraint firstItem="ucj-vh-IBB" firstAttribute="leading" secondItem="6u9-Jz-4RC" secondAttribute="leading" constant="16" id="OqN-Na-oA7"/>
                             <constraint firstItem="7io-zT-Fkz" firstAttribute="leading" secondItem="fOz-md-eiu" secondAttribute="leading" id="RJt-Ts-8xa"/>
-                            <constraint firstItem="6u9-Jz-4RC" firstAttribute="trailing" secondItem="BVR-mj-pde" secondAttribute="trailing" constant="148" id="XGe-JF-WRP"/>
                             <constraint firstItem="6u9-Jz-4RC" firstAttribute="trailing" secondItem="ucj-vh-IBB" secondAttribute="trailing" constant="16" id="YUZ-jM-lWb"/>
                             <constraint firstItem="7io-zT-Fkz" firstAttribute="top" secondItem="fOz-md-eiu" secondAttribute="top" constant="4" id="dtU-9y-ljn"/>
-                            <constraint firstItem="BVR-mj-pde" firstAttribute="leading" secondItem="6u9-Jz-4RC" secondAttribute="leading" constant="148" id="yMo-ww-Seh"/>
+                            <constraint firstItem="6u9-Jz-4RC" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="ccp-vI-Pj3" secondAttribute="trailing" constant="170" id="nA6-zQ-LYr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="z4k-Me-uJ6"/>
                     <size key="freeformSize" width="393" height="852"/>
                     <connections>
                         <outlet property="customNavigationBar" destination="7io-zT-Fkz" id="HzC-mB-j7H"/>
-                        <outlet property="dateLabel" destination="BVR-mj-pde" id="JQl-yK-LEi"/>
+                        <outlet property="dateButtonExistedVC" destination="ccp-vI-Pj3" id="Rlh-KL-Cdc"/>
                         <outlet property="deleteButton" destination="EQA-mv-hqM" id="N7s-jp-bj3"/>
-                        <outlet property="descriptionLabel" destination="oZe-S8-Dyi" id="mAZ-R0-ynT"/>
-                        <outlet property="titleLabel" destination="Obo-cM-K94" id="xbW-j7-als"/>
+                        <outlet property="descriptionTView" destination="oZe-S8-Dyi" id="mAZ-R0-ynT"/>
+                        <outlet property="titleTF" destination="Obo-cM-K94" id="xbW-j7-als"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GZl-It-bQg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -247,7 +249,7 @@
             <objects>
                 <viewController storyboardIdentifier="CalendarViewController" id="XXf-d5-jwc" customClass="CalendarViewController" customModule="ToDoAppStudyProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xxt-lm-Nje">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="511"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="501"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="oOI-el-yhJ">
@@ -269,12 +271,9 @@
                             </navigationBar>
                             <datePicker clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="LCR-cZ-arU">
                                 <rect key="frame" x="36" y="120" width="320" height="307"/>
-                                <connections>
-                                    <action selector="changeDate:" destination="XXf-d5-jwc" eventType="valueChanged" id="zCv-yr-OLF"/>
-                                </connections>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylS-l4-3li">
-                                <rect key="frame" x="165" y="460" width="64" height="35"/>
+                                <rect key="frame" x="165" y="450" width="64" height="35"/>
                                 <color key="tintColor" red="0.92128556969999997" green="0.12786246640000001" blue="0.1885052324" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Clear"/>
@@ -296,14 +295,15 @@
                             <constraint firstItem="LCR-cZ-arU" firstAttribute="leading" secondItem="jTK-ph-5Eg" secondAttribute="leading" constant="36" id="wFB-sL-MCr"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="393" height="511"/>
+                    <size key="freeformSize" width="393" height="501"/>
                     <connections>
                         <outlet property="datePicker" destination="LCR-cZ-arU" id="EHN-JH-dIW"/>
+                        <outlet property="navigationBar" destination="oOI-el-yhJ" id="UOy-FP-JW0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UZ0-8g-Mu3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2442" y="424"/>
+            <point key="canvasLocation" x="3236" y="56"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qce-WH-wTT">
@@ -333,9 +333,6 @@
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
