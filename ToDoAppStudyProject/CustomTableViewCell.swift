@@ -46,7 +46,7 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     @objc func checkBoxButtonClicked(sender: UIButton) {
- 
+        
         isChecked = !isChecked  // Toggle the checked state
         let imageName = isChecked ? "selected" : "unselected"
         checkBoxButton.setImage(UIImage(named: imageName), for: .normal)

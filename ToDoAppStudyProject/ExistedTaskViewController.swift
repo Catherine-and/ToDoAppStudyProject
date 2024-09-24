@@ -13,10 +13,10 @@ protocol ExistedTaskVCDelegate: AnyObject {
 }
 
 class ExistedTaskViewController: UIViewController {
-
+    
     var currentTask: Task?
     var selectedDate: Date?
-
+    
     weak var delegate: ExistedTaskVCDelegate?
     
     var isTaskChanged = false
@@ -40,15 +40,15 @@ class ExistedTaskViewController: UIViewController {
         titleTF.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         
         descriptionTView.delegate = self
+        selectedDate = currentTask?.toBeDoneDate
         
         updateUI()
-
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-            changeData()
+        print("func viewWillDisappear: \(dateButtonTitle)")
+        changeData()
     }
     
     @objc private func textFieldDidChange(textField: UITextField) {
@@ -68,17 +68,18 @@ class ExistedTaskViewController: UIViewController {
     func changeData() {
         
         if isTaskChanged, let task = currentTask {
+            print("func changeData: \(dateButtonTitle)")
             
             try? realm.write {
                 task.title = titleTF.text
                 task.descriptionText = descriptionTView.text
-                //task.date = dateLabel.text
-
+                task.date = dateButtonTitle
+                task.toBeDoneDate = selectedDate
             }
             self.delegate?.didChangeTask(task: task)
         }
     }
-
+    
     @IBAction func deleteButtonTapped(_ sender: UIBarButtonItem) {
         
         let alertMessage = UIAlertController(title: "You're about to completely delete the task", message: "Are you sure?", preferredStyle: .alert)
@@ -90,7 +91,7 @@ class ExistedTaskViewController: UIViewController {
             currentTask = nil
             self.navigationController?.popViewController(animated: true)
             dismiss(animated: true, completion: nil)
-
+            
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
@@ -99,22 +100,21 @@ class ExistedTaskViewController: UIViewController {
         alertMessage.addAction(cancel)
         
         self.present(alertMessage, animated: true)
-
+        
     }
     
     @IBAction func dateButtonEVCTapped(_ sender: UIButton) {
         
         let calendarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CalendarViewController") as! CalendarViewController
         
-        let dateFormatter = DateFormatter()
-        
         calendarVC.selectedDate = selectedDate
-
+        calendarVC.delegate = self
+        
         if let sheet = calendarVC.sheetPresentationController {
             sheet.detents = [.medium()]
         }
         self.present(calendarVC, animated: true)
-    } 
+    }
     
 }
 
@@ -122,5 +122,24 @@ extension ExistedTaskViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         isTaskChanged = true
+    }
+}
+
+extension ExistedTaskViewController: CalendarViewControllerDelegate {
+    func setDate(date: Date) {
+        selectedDate = date
+        updateButtonTitle(with: date)
+        isTaskChanged = true
+    }
+    
+    
+    func updateButtonTitle(with date: Date) {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEE, dd MMM"
+        let dateString = dateFormatter.string(from: date)
+        dateButtonTitle = dateString
+        
+        dateButtonExistedVC.setTitle(dateString, for: .normal)
     }
 }

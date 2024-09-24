@@ -67,13 +67,11 @@ class NewTaskViewController: UIViewController {
     }
     
     func saveNewTask() {
-        print("Title: \(titleText.text ?? "")")
-        print("Description: \(descriptionTextView.text ?? "")")
-        print("Date: \(dateTitle)")
         
         let newTask = Task(title: titleText.text!,
                            descriptionText: descriptionTextView.text!,
-                           date: dateTitle)
+                           date: dateTitle,
+                           toBeDoneDate: selectedDate)
         
         StorageManager.saveObject(newTask)
     }

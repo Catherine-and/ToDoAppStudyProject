@@ -38,10 +38,11 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! CustomTableViewCell
         
         let task = tasks[indexPath.row]
-                
+        
         cell.titleLabel.text = task.title
         cell.descriptionLabel.text = task.descriptionText
-        cell.dateLabel.text = task.date
+        //cell.dateLabel.text = task.date
+        cell.dateLabel.text = formatDateForCell(task.toBeDoneDate)
         cell.isChecked = task.isDone
         let imageName = cell.isChecked ? "selected" : "unselected"
         cell.checkBoxButton.setImage(UIImage(named: imageName), for: .normal)
@@ -89,6 +90,25 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.reloadData()
         
     }
+    
+    func formatDateForCell(_ date: Date?) -> String {
+        guard let date = date else { return "" }
+        
+        let dateFormatter = DateFormatter()
+        let calendar = Calendar.current
+        dateFormatter.dateFormat = "dd MMM"
+        
+        if calendar.isDateInToday(date) {
+            return "Today"
+        } else if calendar.isDateInTomorrow(date) {
+            return "Tomorrow"
+        } else if calendar.isDateInYesterday(date) {
+            return "Yesterday"
+        }
+        
+        return dateFormatter.string(from: date)
+    }
+    
 }
 
 
