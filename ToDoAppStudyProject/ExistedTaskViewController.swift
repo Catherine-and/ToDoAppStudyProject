@@ -28,7 +28,6 @@ class ExistedTaskViewController: UIViewController {
     @IBOutlet weak var descriptionTView: UITextView!
     
     @IBOutlet weak var deleteButton: UIBarButtonItem!
-    
     @IBOutlet weak var dateButtonExistedVC: UIButton!
     
     override func viewDidLoad() {
@@ -47,7 +46,6 @@ class ExistedTaskViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("func viewWillDisappear: \(dateButtonTitle)")
         changeData()
     }
     
@@ -61,14 +59,33 @@ class ExistedTaskViewController: UIViewController {
         
         titleTF.text = task.title
         descriptionTView.text = task.descriptionText
-        dateButtonTitle = task.date!
+        //dateButtonTitle = task.date!
+        dateButtonTitle = formatDateForTheTask(task.toBeDoneDate)
         dateButtonExistedVC.setTitle(dateButtonTitle, for: .normal)
+    }
+    
+    func formatDateForTheTask(_ date: Date?) -> String {
+        guard let date = date else { return "" }
+        
+        let dateFormatter = DateFormatter()
+        let calendar = Calendar.current
+        dateFormatter.dateFormat = "dd MMM"
+        
+        if calendar.isDateInToday(date) {
+            return "Today, \(dateFormatter.string(from: date))"
+        } else if calendar.isDateInTomorrow(date) {
+            return "Tomorrow, \(dateFormatter.string(from: date))"
+        } else if calendar.isDateInYesterday(date) {
+            return "Yesterday, \(dateFormatter.string(from: date))"
+        }
+        
+        dateFormatter.dateFormat = "EEE, dd MMM"
+        return dateFormatter.string(from: date)
     }
     
     func changeData() {
         
         if isTaskChanged, let task = currentTask {
-            print("func changeData: \(dateButtonTitle)")
             
             try? realm.write {
                 task.title = titleTF.text
@@ -135,11 +152,20 @@ extension ExistedTaskViewController: CalendarViewControllerDelegate {
     
     func updateButtonTitle(with date: Date) {
         
+        let calendar = Calendar.current
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEE, dd MMM"
-        let dateString = dateFormatter.string(from: date)
-        dateButtonTitle = dateString
+        dateFormatter.dateFormat = "dd MMM"
+        var dateString = dateFormatter.string(from: date)
+
+        if calendar.isDateInToday(date) {
+            dateString = "Today, \(dateFormatter.string(from: date))"
+        } else if calendar.isDateInTomorrow(date) {
+            dateString = "Tomorrow, \(dateFormatter.string(from: date))"
+        } else if calendar.isDateInYesterday(date) {
+            dateString = "Yesterday, \(dateFormatter.string(from: date))"
+        }
         
+        dateButtonTitle = dateString
         dateButtonExistedVC.setTitle(dateString, for: .normal)
     }
 }

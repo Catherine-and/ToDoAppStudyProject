@@ -51,6 +51,24 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    func formatDateForCell(_ date: Date?) -> String {
+        guard let date = date else { return "" }
+        
+        let dateFormatter = DateFormatter()
+        let calendar = Calendar.current
+        dateFormatter.dateFormat = "dd MMM"
+        
+        if calendar.isDateInToday(date) {
+            return "Today"
+        } else if calendar.isDateInTomorrow(date) {
+            return "Tomorrow"
+        } else if calendar.isDateInYesterday(date) {
+            return "Yesterday"
+        }
+        
+        return dateFormatter.string(from: date)
+    }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -90,25 +108,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.reloadData()
         
     }
-    
-    func formatDateForCell(_ date: Date?) -> String {
-        guard let date = date else { return "" }
-        
-        let dateFormatter = DateFormatter()
-        let calendar = Calendar.current
-        dateFormatter.dateFormat = "dd MMM"
-        
-        if calendar.isDateInToday(date) {
-            return "Today"
-        } else if calendar.isDateInTomorrow(date) {
-            return "Tomorrow"
-        } else if calendar.isDateInYesterday(date) {
-            return "Yesterday"
-        }
-        
-        return dateFormatter.string(from: date)
-    }
-    
+
 }
 
 
