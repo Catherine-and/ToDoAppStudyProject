@@ -11,15 +11,29 @@ import RealmSwift
 class ToDoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tasks: Results<Task>!
+    var filteredTasks: Results<Task>!
+    var currentFilter: UIBarButtonItem!
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var addTaskButtonLabel: UIButton!
+    @IBOutlet weak var customNavigationBar: UINavigationBar!
+    
+    @IBOutlet weak var allTasksButton: UIBarButtonItem!
+    @IBOutlet weak var overdueTasksButton: UIBarButtonItem!
+    @IBOutlet weak var todayTasksButton: UIBarButtonItem!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        customNavigationBar.setBackgroundImage(UIImage(), for: .default)
+        customNavigationBar.shadowImage = UIImage()
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        
         tasks = realm.objects(Task.self)
+        filteredTasks = tasks
         
         let nib = UINib(nibName: "CustomTableViewCell", bundle: nil)
         
@@ -29,19 +43,24 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        filterTasks(by: todayTasksButton)
+
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.isEmpty ? 0 : tasks.count
+        return filteredTasks.isEmpty ? 0 : filteredTasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! CustomTableViewCell
         
-        let task = tasks[indexPath.row]
+        let task = filteredTasks[indexPath.row]
         
         cell.titleLabel.text = task.title
         cell.descriptionLabel.text = task.descriptionText
-        //cell.dateLabel.text = task.date
         cell.dateLabel.text = formatDateForCell(task.toBeDoneDate)
         cell.isChecked = task.isDone
         let imageName = cell.isChecked ? "selected" : "unselected"
@@ -68,6 +87,30 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         
         return dateFormatter.string(from: date)
     }
+    
+
+    func filterTasks(by filterType: UIBarButtonItem) {
+        let today = Date()
+        let calendar = Calendar.current
+        
+        switch filterType {
+        case todayTasksButton:
+            let startOfDay = calendar.startOfDay(for: today)
+            let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+            
+            filteredTasks = tasks.filter("toBeDoneDate >= %@ AND toBeDoneDate < %@", startOfDay, endOfDay)
+            
+        case overdueTasksButton:
+            let startOfDay = calendar.startOfDay(for: today)
+            filteredTasks = tasks.filter("toBeDoneDate < %@", startOfDay)
+            
+        default:
+            filteredTasks = tasks
+        }
+
+        tableView.reloadData()
+    }
+    
     
     // MARK: - Navigation
     
@@ -105,10 +148,31 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         
         guard let newTaskVC = segue.source as? NewTaskViewController else { return }
         newTaskVC.saveNewTask()
-        tableView.reloadData()
+        
+//        if let selectedButton = currentFilter {
+//            filterTasks(by: selectedButton)
+//        } else {
+//            filterTasks(by: todayTasksButton)
+//        }
+        
+        filterTasks(by: currentFilter ?? todayTasksButton)
         
     }
-
+    
+    @IBAction func allBarButtonTapped(_ sender: UIBarButtonItem) {
+        currentFilter = sender
+        filterTasks(by: sender)
+    }
+    @IBAction func overdueBarButtonTapped(_ sender: UIBarButtonItem) {
+        currentFilter = sender
+        filterTasks(by: sender)
+    }
+    @IBAction func todayBarButtonTapped(_ sender: UIBarButtonItem) {
+        currentFilter = sender
+        filterTasks(by: sender)
+    }
+    
+    
 }
 
 
@@ -138,8 +202,11 @@ extension ToDoListViewController: ExistedTaskVCDelegate {
     func didDeleteTask(task: Task) {
         if let index = tasks.index(of: task) {
             StorageManager.deleteObject(task)
+            
             tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+            
         }
+        
     }
     
     func didChangeTask(task: Task) {

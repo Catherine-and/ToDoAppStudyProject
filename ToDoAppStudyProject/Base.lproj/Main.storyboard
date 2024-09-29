@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--To Do List View Controller-->
+        <!--Today-->
         <scene sceneID="NCh-YY-aAQ">
             <objects>
                 <viewController id="jDK-jq-Jhz" customClass="ToDoListViewController" customModule="ToDoAppStudyProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,9 +18,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sRN-B4-MRA">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="169" width="393" height="649"/>
                                 <color key="backgroundColor" red="0.93725490570000003" green="0.9529411793" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.93725490570000003" green="0.9529411793" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BiZ-V9-E4f" id="Q6o-4h-9gh"/>
                                     <outlet property="delegate" destination="BiZ-V9-E4f" id="m0D-fP-86o"/>
@@ -37,11 +37,40 @@
                                     <action selector="addNewTaskAction:" destination="jDK-jq-Jhz" eventType="touchUpInside" id="a2z-Ei-7kc"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bfp-o0-clq">
+                                <rect key="frame" x="0.0" y="105" width="393" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.93725490570000003" green="0.9529411793" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <items>
+                                    <navigationItem id="oh2-D7-n4B">
+                                        <leftBarButtonItems>
+                                            <barButtonItem title="All" id="ez0-TF-J80">
+                                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="allBarButtonTapped:" destination="jDK-jq-Jhz" id="xMm-1F-KlM"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Overdue" id="vTe-FD-AwI">
+                                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="overdueBarButtonTapped:" destination="jDK-jq-Jhz" id="7dd-8x-DrR"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Today" id="HpN-nH-xVi">
+                                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="todayBarButtonTapped:" destination="jDK-jq-Jhz" id="TOb-lT-Xee"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </leftBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bor-Rz-GMC"/>
                         <color key="backgroundColor" red="0.93725490570000003" green="0.9529411793" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="sRN-B4-MRA" firstAttribute="top" secondItem="bor-Rz-GMC" secondAttribute="top" id="QEw-Sl-0gu"/>
+                            <constraint firstItem="sRN-B4-MRA" firstAttribute="top" secondItem="bor-Rz-GMC" secondAttribute="top" constant="66" id="QEw-Sl-0gu"/>
                             <constraint firstItem="bor-Rz-GMC" firstAttribute="trailing" secondItem="sRN-B4-MRA" secondAttribute="trailing" id="S71-AE-qtB"/>
                             <constraint firstAttribute="bottom" secondItem="4at-TJ-NSD" secondAttribute="bottom" constant="110" id="bdL-ou-5RK"/>
                             <constraint firstItem="bor-Rz-GMC" firstAttribute="trailing" secondItem="4at-TJ-NSD" secondAttribute="trailing" constant="16" id="qSp-XE-GOK"/>
@@ -49,10 +78,14 @@
                             <constraint firstItem="sRN-B4-MRA" firstAttribute="leading" secondItem="bor-Rz-GMC" secondAttribute="leading" id="uZE-Hg-csY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="cNw-o5-LXd"/>
+                    <navigationItem key="navigationItem" title="Today" largeTitleDisplayMode="never" id="cNw-o5-LXd"/>
                     <connections>
                         <outlet property="addTaskButtonLabel" destination="4at-TJ-NSD" id="9Gp-nu-nL0"/>
+                        <outlet property="allTasksButton" destination="ez0-TF-J80" id="SjS-pK-kLH"/>
+                        <outlet property="customNavigationBar" destination="bfp-o0-clq" id="jNR-iM-QrJ"/>
+                        <outlet property="overdueTasksButton" destination="vTe-FD-AwI" id="uWO-Rh-taf"/>
                         <outlet property="tableView" destination="sRN-B4-MRA" id="nBO-94-BUU"/>
+                        <outlet property="todayTasksButton" destination="HpN-nH-xVi" id="byB-Li-reT"/>
                         <segue destination="GjZ-eq-xfA" kind="presentation" identifier="MoveToExistedTaskVC" id="cD5-tF-mUB"/>
                     </connections>
                 </viewController>
@@ -315,6 +348,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Qu6-Te-Wya">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="jDK-jq-Jhz" kind="relationship" relationship="rootViewController" id="gTy-H4-Arh"/>
                     </connections>

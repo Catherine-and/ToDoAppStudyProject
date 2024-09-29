@@ -19,8 +19,9 @@ class NewTaskViewController: UIViewController {
     
     @IBOutlet weak var dateButton: UIButton!
     
-    
     @IBOutlet weak var bottomButtonConstraint: NSLayoutConstraint!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

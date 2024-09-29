@@ -59,9 +59,16 @@ class ExistedTaskViewController: UIViewController {
         
         titleTF.text = task.title
         descriptionTView.text = task.descriptionText
-        //dateButtonTitle = task.date!
         dateButtonTitle = formatDateForTheTask(task.toBeDoneDate)
         dateButtonExistedVC.setTitle(dateButtonTitle, for: .normal)
+        
+        updateDateButtonColor(with: selectedDate!)
+    }
+    
+    func isDateBeforeToday(_ date: Date) -> Bool {
+        let calendar = Calendar.current
+        
+        return calendar.compare(date, to: Date(), toGranularity: .day) == .orderedAscending
     }
     
     func formatDateForTheTask(_ date: Date?) -> String {
@@ -156,16 +163,32 @@ extension ExistedTaskViewController: CalendarViewControllerDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM"
         var dateString = dateFormatter.string(from: date)
-
+        
         if calendar.isDateInToday(date) {
             dateString = "Today, \(dateFormatter.string(from: date))"
+            
         } else if calendar.isDateInTomorrow(date) {
             dateString = "Tomorrow, \(dateFormatter.string(from: date))"
+            
         } else if calendar.isDateInYesterday(date) {
             dateString = "Yesterday, \(dateFormatter.string(from: date))"
+            
+        } else {
+            dateFormatter.dateFormat = "EEE, dd MMM"
+            dateString = dateFormatter.string(from: date)
         }
         
         dateButtonTitle = dateString
         dateButtonExistedVC.setTitle(dateString, for: .normal)
+        updateDateButtonColor(with: date)
+
+    }
+    
+    func updateDateButtonColor(with date: Date) {
+        if isDateBeforeToday(date) {
+            dateButtonExistedVC.tintColor = .red  // Красный цвет для прошлых дат
+        } else {
+            dateButtonExistedVC.tintColor = .blue  // Синий цвет для сегодняшних и будущих дат
+        }
     }
 }
