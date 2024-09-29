@@ -26,12 +26,15 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         customNavigationBar.setBackgroundImage(UIImage(), for: .default)
         customNavigationBar.shadowImage = UIImage()
         
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         
+        setButtonColors(for: todayTasksButton)
+
         tasks = realm.objects(Task.self)
         filteredTasks = tasks
         
@@ -46,7 +49,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         filterTasks(by: todayTasksButton)
-
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,7 +64,8 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.titleLabel.text = task.title
         cell.descriptionLabel.text = task.descriptionText
-        cell.dateLabel.text = formatDateForCell(task.toBeDoneDate)
+        cell.dateLabel.textColor = .blue
+        cell.dateLabel.text = formatDateForCell(task.toBeDoneDate, for: cell.dateLabel)
         cell.isChecked = task.isDone
         let imageName = cell.isChecked ? "selected" : "unselected"
         cell.checkBoxButton.setImage(UIImage(named: imageName), for: .normal)
@@ -70,9 +74,10 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-    func formatDateForCell(_ date: Date?) -> String {
+    func formatDateForCell(_ date: Date?, for text: UILabel) -> String {
         guard let date = date else { return "" }
         
+        let today = Date()
         let dateFormatter = DateFormatter()
         let calendar = Calendar.current
         dateFormatter.dateFormat = "dd MMM"
@@ -82,13 +87,16 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         } else if calendar.isDateInTomorrow(date) {
             return "Tomorrow"
         } else if calendar.isDateInYesterday(date) {
+            text.textColor = .red
             return "Yesterday"
+        } else if date < today {
+            text.textColor = .red
+            return dateFormatter.string(from: date)
         }
         
         return dateFormatter.string(from: date)
     }
     
-
     func filterTasks(by filterType: UIBarButtonItem) {
         let today = Date()
         let calendar = Calendar.current
@@ -107,7 +115,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         default:
             filteredTasks = tasks
         }
-
+        
         tableView.reloadData()
     }
     
@@ -117,7 +125,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "MoveToExistedTaskVC", let indexPath = sender as? IndexPath {
-            let task = tasks[indexPath.row]
+            let task = filteredTasks[indexPath.row]
             
             if let existedTaskVC = segue.destination as? ExistedTaskViewController {
                 existedTaskVC.delegate = self
@@ -149,25 +157,21 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         guard let newTaskVC = segue.source as? NewTaskViewController else { return }
         newTaskVC.saveNewTask()
         
-//        if let selectedButton = currentFilter {
-//            filterTasks(by: selectedButton)
-//        } else {
-//            filterTasks(by: todayTasksButton)
-//        }
-        
         filterTasks(by: currentFilter ?? todayTasksButton)
-        
     }
     
     @IBAction func allBarButtonTapped(_ sender: UIBarButtonItem) {
+        setButtonColors(for: sender)
         currentFilter = sender
         filterTasks(by: sender)
     }
     @IBAction func overdueBarButtonTapped(_ sender: UIBarButtonItem) {
+        setButtonColors(for: sender)
         currentFilter = sender
         filterTasks(by: sender)
     }
     @IBAction func todayBarButtonTapped(_ sender: UIBarButtonItem) {
+        setButtonColors(for: sender)
         currentFilter = sender
         filterTasks(by: sender)
     }
@@ -185,7 +189,6 @@ extension ToDoListViewController: CustomTableViewCellDelegate {
     }
     
     func checkBoxToggled(cell: CustomTableViewCell) {
-        
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         let task = tasks[indexPath.row]
         
@@ -195,6 +198,14 @@ extension ToDoListViewController: CustomTableViewCellDelegate {
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
+    func setButtonColors(for selectedButton: UIBarButtonItem) {
+        
+        allTasksButton.tintColor = .gray
+        overdueTasksButton.tintColor = .gray
+        todayTasksButton.tintColor = .gray
+        
+        selectedButton.tintColor = .blue
+    }
 }
 
 extension ToDoListViewController: ExistedTaskVCDelegate {
@@ -204,12 +215,11 @@ extension ToDoListViewController: ExistedTaskVCDelegate {
             StorageManager.deleteObject(task)
             
             tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-            
         }
-        
     }
     
     func didChangeTask(task: Task) {
+        filterTasks(by: currentFilter)
         tableView.reloadData()
     }
 }

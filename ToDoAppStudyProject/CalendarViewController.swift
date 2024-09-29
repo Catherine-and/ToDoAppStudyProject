@@ -15,7 +15,7 @@ class CalendarViewController: UIViewController {
     
     weak var delegate: CalendarViewControllerDelegate?
     
-    var date = ""
+    var stringDate = ""
     var selectedDate: Date?
     
     @IBOutlet weak var navigationBar: UINavigationBar!
