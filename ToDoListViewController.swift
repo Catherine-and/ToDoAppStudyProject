@@ -14,6 +14,8 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     var filteredTasks: Results<Task>!
     var currentFilter: UIBarButtonItem!
     
+    let tabBar = UITabBarController()
+    
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var addTaskButtonLabel: UIButton!
     @IBOutlet weak var customNavigationBar: UINavigationBar!
@@ -26,13 +28,11 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         customNavigationBar.setBackgroundImage(UIImage(), for: .default)
         customNavigationBar.shadowImage = UIImage()
         
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
-        
         setButtonColors(for: todayTasksButton)
 
         tasks = realm.objects(Task.self)
@@ -43,7 +43,6 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.register(nib, forCellReuseIdentifier: "CustomTableViewCell")
         tableView.delegate = self
         tableView.dataSource = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -190,12 +189,13 @@ extension ToDoListViewController: CustomTableViewCellDelegate {
     
     func checkBoxToggled(cell: CustomTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        let task = tasks[indexPath.row]
+        let task = filteredTasks[indexPath.row]
         
         try! realm.write {
             task.isDone = cell.isChecked
         }
         tableView.reloadRows(at: [indexPath], with: .automatic)
+        
     }
     
     func setButtonColors(for selectedButton: UIBarButtonItem) {

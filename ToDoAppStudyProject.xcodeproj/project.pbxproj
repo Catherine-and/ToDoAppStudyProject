@@ -11,8 +11,10 @@
 		E7182EB62C8DCBDD0087DD95 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7182EB52C8DCBDD0087DD95 /* CustomTableViewCell.xib */; };
 		E7182EB72C8DCBDD0087DD95 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7182EB42C8DCBDD0087DD95 /* CustomTableViewCell.swift */; };
 		E726B1EE2C9725FF003E2CF4 /* ExistedTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E726B1ED2C9725FF003E2CF4 /* ExistedTaskViewController.swift */; };
+		E72CDDA02CAF10D9000B6254 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72CDD9F2CAF10D9000B6254 /* API.swift */; };
 		E7690BFE2C998810004F736D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E7690BFD2C998810004F736D /* .gitignore */; };
-		E77472A52C9D796C0022C248 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77472A42C9D796C0022C248 /* CalendarViewController.swift */; };
+		E7839B7C2CAFD2BA007D616D /* WheatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7839B7B2CAFD2BA007D616D /* WheatherModel.swift */; };
+		E7839B7E2CAFE8A1007D616D /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7839B7D2CAFE8A1007D616D /* CalendarViewController.swift */; };
 		E7964A032C8C281C00DB6EEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7964A022C8C281C00DB6EEA /* AppDelegate.swift */; };
 		E7964A052C8C281C00DB6EEA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7964A042C8C281C00DB6EEA /* SceneDelegate.swift */; };
 		E7964A0A2C8C281C00DB6EEA /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E7964A092C8C281C00DB6EEA /* Base */; };
@@ -21,6 +23,8 @@
 		E7964A202C8C719200DB6EEA /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7964A1F2C8C719200DB6EEA /* ToDoListViewController.swift */; };
 		E7A7A6CF2C8C7E53003D925D /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A7A6CE2C8C7E53003D925D /* TaskModel.swift */; };
 		E7A7A6D32C8DA2C5003D925D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A7A6D22C8DA2C5003D925D /* Storage.swift */; };
+		E7C433852CAE8DD50098234A /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C433842CAE8DD50098234A /* WeatherViewController.swift */; };
+		E7C4338D2CAE961E0098234A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C4338C2CAE961E0098234A /* TabBarViewController.swift */; };
 		E7EE40482C9043C300156351 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE40472C9043C300156351 /* NewTaskViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,8 +35,10 @@
 		E7182EB42C8DCBDD0087DD95 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		E7182EB52C8DCBDD0087DD95 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		E726B1ED2C9725FF003E2CF4 /* ExistedTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistedTaskViewController.swift; sourceTree = "<group>"; };
+		E72CDD9F2CAF10D9000B6254 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		E7690BFD2C998810004F736D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		E77472A42C9D796C0022C248 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		E7839B7B2CAFD2BA007D616D /* WheatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheatherModel.swift; sourceTree = "<group>"; };
+		E7839B7D2CAFE8A1007D616D /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = ToDoAppStudyProject/CalendarViewController.swift; sourceTree = "<group>"; };
 		E79649FF2C8C281C00DB6EEA /* ToDoAppStudyProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoAppStudyProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7964A022C8C281C00DB6EEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7964A042C8C281C00DB6EEA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +49,8 @@
 		E7964A1F2C8C719200DB6EEA /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
 		E7A7A6CE2C8C7E53003D925D /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		E7A7A6D22C8DA2C5003D925D /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		E7C433842CAE8DD50098234A /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		E7C4338C2CAE961E0098234A /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		E7EE40472C9043C300156351 /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,6 +73,30 @@
 				4501C3B712DC7F677693834B /* Pods-ToDoAppStudyProject.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E72CDD9D2CAF101D000B6254 /* MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				E7964A1F2C8C719200DB6EEA /* ToDoListViewController.swift */,
+				E7EE40472C9043C300156351 /* NewTaskViewController.swift */,
+				E726B1ED2C9725FF003E2CF4 /* ExistedTaskViewController.swift */,
+				E7182EB42C8DCBDD0087DD95 /* CustomTableViewCell.swift */,
+				E7839B7D2CAFE8A1007D616D /* CalendarViewController.swift */,
+			);
+			name = MainPage;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		E72CDD9E2CAF105A000B6254 /* WeatherPage */ = {
+			isa = PBXGroup;
+			children = (
+				E7839B7B2CAFD2BA007D616D /* WheatherModel.swift */,
+				E7C433842CAE8DD50098234A /* WeatherViewController.swift */,
+				E72CDD9F2CAF10D9000B6254 /* API.swift */,
+			);
+			name = WeatherPage;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		E79649F62C8C281C00DB6EEA = {
@@ -90,13 +122,11 @@
 			children = (
 				E7964A022C8C281C00DB6EEA /* AppDelegate.swift */,
 				E7964A042C8C281C00DB6EEA /* SceneDelegate.swift */,
-				E7A7A6D22C8DA2C5003D925D /* Storage.swift */,
 				E7A7A6CE2C8C7E53003D925D /* TaskModel.swift */,
-				E7964A1F2C8C719200DB6EEA /* ToDoListViewController.swift */,
-				E7EE40472C9043C300156351 /* NewTaskViewController.swift */,
-				E726B1ED2C9725FF003E2CF4 /* ExistedTaskViewController.swift */,
-				E77472A42C9D796C0022C248 /* CalendarViewController.swift */,
-				E7182EB42C8DCBDD0087DD95 /* CustomTableViewCell.swift */,
+				E7A7A6D22C8DA2C5003D925D /* Storage.swift */,
+				E7C4338C2CAE961E0098234A /* TabBarViewController.swift */,
+				E72CDD9D2CAF101D000B6254 /* MainPage */,
+				E72CDD9E2CAF105A000B6254 /* WeatherPage */,
 				E7964A082C8C281C00DB6EEA /* Main.storyboard */,
 				E7182EB52C8DCBDD0087DD95 /* CustomTableViewCell.xib */,
 				E7964A0D2C8C281E00DB6EEA /* LaunchScreen.storyboard */,
@@ -232,14 +262,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E72CDDA02CAF10D9000B6254 /* API.swift in Sources */,
 				E7182EB72C8DCBDD0087DD95 /* CustomTableViewCell.swift in Sources */,
+				E7C433852CAE8DD50098234A /* WeatherViewController.swift in Sources */,
 				E7964A202C8C719200DB6EEA /* ToDoListViewController.swift in Sources */,
 				E726B1EE2C9725FF003E2CF4 /* ExistedTaskViewController.swift in Sources */,
+				E7839B7E2CAFE8A1007D616D /* CalendarViewController.swift in Sources */,
 				E7EE40482C9043C300156351 /* NewTaskViewController.swift in Sources */,
 				E7964A032C8C281C00DB6EEA /* AppDelegate.swift in Sources */,
+				E7839B7C2CAFD2BA007D616D /* WheatherModel.swift in Sources */,
 				E7A7A6CF2C8C7E53003D925D /* TaskModel.swift in Sources */,
-				E77472A52C9D796C0022C248 /* CalendarViewController.swift in Sources */,
 				E7A7A6D32C8DA2C5003D925D /* Storage.swift in Sources */,
+				E7C4338D2CAE961E0098234A /* TabBarViewController.swift in Sources */,
 				E7964A052C8C281C00DB6EEA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
