@@ -4,6 +4,9 @@
    <Group
       location = "container:"
       name = "New Group">
+      <FileRef
+         location = "group:/Users/ekaterinaisaeva/Desktop/IosDevelop/APPS/ToDoAppStudyProject/API.swift">
+      </FileRef>
    </Group>
    <FileRef
       location = "group:ToDoAppStudyProject.xcodeproj">

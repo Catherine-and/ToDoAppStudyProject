@@ -1,8 +1,8 @@
 //
 //  API.swift
-//  ToDoAppStudyProject
+//  
 //
-//  Created by Ekaterina Isaeva on 03.10.2024.
+//  Created by Ekaterina Isaeva on 08.10.2024.
 //
 
 import Foundation
@@ -11,9 +11,9 @@ final class APIManager {
     
     private let apiKey = "3c53048a09eedcf7c46a6acf3205e522"
         
-    func load(city: String = "Moscow", completion: @escaping (Result<Weather?, Error>) -> Void) {
+    func load(latitude: Double, longitude: Double, completion: @escaping (Result<Weather?, Error>) -> Void) {
         
-        guard let url = URL(string:"https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(apiKey)") else { return }
+        guard let url = URL(string:"https://api.openweathermap.org/data/2.5/weather?lat=\(latitude.description)&lon=\(longitude.description)&appid=\(apiKey)") else { return }
         
         let session = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
             if let error {
