@@ -10,15 +10,15 @@
 
     class WeatherViewController: UIViewController {
         
-        // MARK: - GUE variable
-        
         let locationManager =  CLLocationManager()
+
+        // MARK: - GUE variable
         
         private lazy var tempLabel: UILabel = {
             let label = UILabel()
             
             label.text = "--"
-            label.font = UIFont.systemFont(ofSize: 90, weight: .light)
+            label.font = UIFont.systemFont(ofSize: 100, weight: .light)
             label.textColor = .blue
             
             return label
@@ -35,6 +35,16 @@
             return label
         }()
         
+        private lazy var skyLabel: UILabel = {
+            let label = UILabel()
+            
+            label.text = "--"
+            label.font = .boldSystemFont(ofSize: 17)
+            label.textColor = .black
+            
+            return label
+        }()
+        
         // MARK: - Life circle
         
         override func viewDidLoad() {
@@ -42,11 +52,13 @@
             
             view.addSubview(tempLabel)
             view.addSubview(cityLabel)
+            view.addSubview(skyLabel)
             
             setupConstraints()
             
             tempLabel.translatesAutoresizingMaskIntoConstraints = false
             cityLabel.translatesAutoresizingMaskIntoConstraints = false
+            skyLabel.translatesAutoresizingMaskIntoConstraints = false
             
             startLocationManager()
         }
@@ -59,7 +71,12 @@
                 tempLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
                 
                 cityLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                cityLabel.bottomAnchor.constraint(equalTo: tempLabel.topAnchor, constant: -16)
+                cityLabel.bottomAnchor.constraint(equalTo: tempLabel.topAnchor, constant: -16),
+                //cityLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16)
+                
+                skyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                skyLabel.topAnchor.constraint(equalTo: tempLabel.bottomAnchor, constant: 16)
+
             ])
         }
         
@@ -82,6 +99,7 @@
     }
 
     // MARK: - Work with CLLocationManagerDelegate
+    // MARK: - Call APIManager
 
     extension WeatherViewController: CLLocationManagerDelegate {
         
@@ -96,6 +114,8 @@
                                 let tempInCelsius = Int((weather.main.temp) - 273.15)
                                 self?.tempLabel.text = String(tempInCelsius) + "º"
                                 self?.cityLabel.text = weather.name
+                                let weatherDescrioption = weather.weather.first?.main
+                                self?.skyLabel.text = weatherDescrioption
                             } else {
                                 self?.show(error: nil)
                             }
