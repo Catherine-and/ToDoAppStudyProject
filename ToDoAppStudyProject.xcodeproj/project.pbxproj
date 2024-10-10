@@ -24,7 +24,6 @@
 		E7A7A6CF2C8C7E53003D925D /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A7A6CE2C8C7E53003D925D /* TaskModel.swift */; };
 		E7A7A6D32C8DA2C5003D925D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A7A6D22C8DA2C5003D925D /* Storage.swift */; };
 		E7C433852CAE8DD50098234A /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C433842CAE8DD50098234A /* WeatherViewController.swift */; };
-		E7C4338D2CAE961E0098234A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C4338C2CAE961E0098234A /* TabBarViewController.swift */; };
 		E7EE40482C9043C300156351 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE40472C9043C300156351 /* NewTaskViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +49,6 @@
 		E7A7A6CE2C8C7E53003D925D /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		E7A7A6D22C8DA2C5003D925D /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		E7C433842CAE8DD50098234A /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
-		E7C4338C2CAE961E0098234A /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		E7EE40472C9043C300156351 /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,7 +122,6 @@
 				E7964A042C8C281C00DB6EEA /* SceneDelegate.swift */,
 				E7A7A6CE2C8C7E53003D925D /* TaskModel.swift */,
 				E7A7A6D22C8DA2C5003D925D /* Storage.swift */,
-				E7C4338C2CAE961E0098234A /* TabBarViewController.swift */,
 				E72CDD9D2CAF101D000B6254 /* MainPage */,
 				E72CDD9E2CAF105A000B6254 /* WeatherPage */,
 				E7964A082C8C281C00DB6EEA /* Main.storyboard */,
@@ -273,7 +270,6 @@
 				E76F484D2CB5724F008D59FB /* API.swift in Sources */,
 				E7A7A6CF2C8C7E53003D925D /* TaskModel.swift in Sources */,
 				E7A7A6D32C8DA2C5003D925D /* Storage.swift in Sources */,
-				E7C4338D2CAE961E0098234A /* TabBarViewController.swift in Sources */,
 				E7964A052C8C281C00DB6EEA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
