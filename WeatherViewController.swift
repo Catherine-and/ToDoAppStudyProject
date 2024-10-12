@@ -19,7 +19,7 @@ class WeatherViewController: UIViewController {
         
         label.text = "--"
         label.font = UIFont.systemFont(ofSize: 100, weight: .light)
-        label.textColor = .blue
+        label.textColor = .deepViolet
         
         return label
     }()
@@ -76,8 +76,11 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .lightBlue
+        
         view.addSubview(tempLabel)
         view.addSubview(cityLabel)
+        
         addSubviews()
         
         setupConstraints()
@@ -90,7 +93,6 @@ class WeatherViewController: UIViewController {
     
     private func addSubviews() {
         view.addSubview(stackView)
- 
     }
     
     // MARK: - Constraints
@@ -105,10 +107,6 @@ class WeatherViewController: UIViewController {
             
             stackView.topAnchor.constraint(equalTo: tempLabel.bottomAnchor, constant: 16),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-//
-//            skyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            skyLabel.topAnchor.constraint(equalTo: tempLabel.bottomAnchor, constant: 16)
-            
         ])
     }
     

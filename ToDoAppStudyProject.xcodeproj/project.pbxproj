@@ -13,6 +13,8 @@
 		E726B1EE2C9725FF003E2CF4 /* ExistedTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E726B1ED2C9725FF003E2CF4 /* ExistedTaskViewController.swift */; };
 		E7690BFE2C998810004F736D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E7690BFD2C998810004F736D /* .gitignore */; };
 		E76F484D2CB5724F008D59FB /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76F484C2CB5724F008D59FB /* API.swift */; };
+		E77D81212CB80A40005B3D84 /* FocusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77D81202CB80A40005B3D84 /* FocusViewController.swift */; };
+		E77D81242CB80CE9005B3D84 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77D81232CB80CE9005B3D84 /* UIColor+Extension.swift */; };
 		E7839B7C2CAFD2BA007D616D /* WheatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7839B7B2CAFD2BA007D616D /* WheatherModel.swift */; };
 		E7839B7E2CAFE8A1007D616D /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7839B7D2CAFE8A1007D616D /* CalendarViewController.swift */; };
 		E7964A032C8C281C00DB6EEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7964A022C8C281C00DB6EEA /* AppDelegate.swift */; };
@@ -36,6 +38,8 @@
 		E726B1ED2C9725FF003E2CF4 /* ExistedTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistedTaskViewController.swift; sourceTree = "<group>"; };
 		E7690BFD2C998810004F736D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		E76F484C2CB5724F008D59FB /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = API.swift; path = /Users/ekaterinaisaeva/Desktop/IosDevelop/APPS/ToDoAppStudyProject/API.swift; sourceTree = "<absolute>"; };
+		E77D81202CB80A40005B3D84 /* FocusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusViewController.swift; sourceTree = "<group>"; };
+		E77D81232CB80CE9005B3D84 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		E7839B7B2CAFD2BA007D616D /* WheatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheatherModel.swift; sourceTree = "<group>"; };
 		E7839B7D2CAFE8A1007D616D /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = ToDoAppStudyProject/CalendarViewController.swift; sourceTree = "<group>"; };
 		E79649FF2C8C281C00DB6EEA /* ToDoAppStudyProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoAppStudyProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +101,14 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		E77D81222CB80A58005B3D84 /* FocusPage */ = {
+			isa = PBXGroup;
+			children = (
+				E77D81202CB80A40005B3D84 /* FocusViewController.swift */,
+			);
+			path = FocusPage;
+			sourceTree = "<group>";
+		};
 		E79649F62C8C281C00DB6EEA = {
 			isa = PBXGroup;
 			children = (
@@ -122,8 +134,10 @@
 				E7964A042C8C281C00DB6EEA /* SceneDelegate.swift */,
 				E7A7A6CE2C8C7E53003D925D /* TaskModel.swift */,
 				E7A7A6D22C8DA2C5003D925D /* Storage.swift */,
+				E77D81232CB80CE9005B3D84 /* UIColor+Extension.swift */,
 				E72CDD9D2CAF101D000B6254 /* MainPage */,
 				E72CDD9E2CAF105A000B6254 /* WeatherPage */,
+				E77D81222CB80A58005B3D84 /* FocusPage */,
 				E7964A082C8C281C00DB6EEA /* Main.storyboard */,
 				E7182EB52C8DCBDD0087DD95 /* CustomTableViewCell.xib */,
 				E7964A0D2C8C281E00DB6EEA /* LaunchScreen.storyboard */,
@@ -261,6 +275,8 @@
 			files = (
 				E7182EB72C8DCBDD0087DD95 /* CustomTableViewCell.swift in Sources */,
 				E7C433852CAE8DD50098234A /* WeatherViewController.swift in Sources */,
+				E77D81242CB80CE9005B3D84 /* UIColor+Extension.swift in Sources */,
+				E77D81212CB80A40005B3D84 /* FocusViewController.swift in Sources */,
 				E7964A202C8C719200DB6EEA /* ToDoListViewController.swift in Sources */,
 				E726B1EE2C9725FF003E2CF4 /* ExistedTaskViewController.swift in Sources */,
 				E7839B7E2CAFE8A1007D616D /* CalendarViewController.swift in Sources */,

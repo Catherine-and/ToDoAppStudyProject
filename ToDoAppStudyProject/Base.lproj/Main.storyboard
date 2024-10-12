@@ -91,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gvX-C7-842" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2443.5114503816794" y="-477.46478873239437"/>
+            <point key="canvasLocation" x="2398" y="-871"/>
         </scene>
         <!--Existed Task View Controller-->
         <scene sceneID="sQJ-8x-Qmp">
@@ -178,7 +178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GZl-It-bQg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3235.8778625954196" y="-477.46478873239437"/>
+            <point key="canvasLocation" x="3190" y="-871"/>
         </scene>
         <!--Weather-->
         <scene sceneID="KHn-5c-7Br">
@@ -194,7 +194,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D1H-xF-mgB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1614.5038167938931" y="214.78873239436621"/>
+            <point key="canvasLocation" x="2395" y="-194"/>
+        </scene>
+        <!--Focus-->
+        <scene sceneID="9yo-uM-oQJ">
+            <objects>
+                <viewController id="bXB-c7-hC2" customClass="FocusViewController" customModule="ToDoAppStudyProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QV2-St-N78">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="xda-o7-X6Y"/>
+                        <color key="backgroundColor" red="0.93333333730000001" green="0.94901967050000002" blue="0.99215686319999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Focus" id="UCG-xC-swH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fIs-GW-Huf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1615" y="477"/>
         </scene>
         <!--New Task View Controller-->
         <scene sceneID="kvQ-0x-lqS">
@@ -291,7 +307,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSk-Ra-CKj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="va1-cF-sW8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3368.7022900763359" y="28.52112676056338"/>
+            <point key="canvasLocation" x="3931" y="-1022"/>
         </scene>
         <!--Calendar View Controller-->
         <scene sceneID="R0G-N0-hxE">
@@ -352,7 +368,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UZ0-8g-Mu3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4162.5954198473282" y="55.985915492957751"/>
+            <point key="canvasLocation" x="3931" y="-645"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="esD-Ga-KZY">
@@ -366,6 +382,7 @@
                     <connections>
                         <segue destination="DH2-bU-Msc" kind="relationship" relationship="viewControllers" id="7Ko-wQ-ISj"/>
                         <segue destination="cXh-fZ-fWO" kind="relationship" relationship="viewControllers" id="IEq-2n-vb8"/>
+                        <segue destination="mQV-EJ-UK1" kind="relationship" relationship="viewControllers" id="EXz-ai-90S"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qku-Jk-IOy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -392,7 +409,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vxt-lM-VIL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1516.7938931297708" y="-477.46478873239437"/>
+            <point key="canvasLocation" x="1469" y="-871"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LoS-kc-ohl">
@@ -414,7 +431,41 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cmc-j7-X8w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="687.78625954198469" y="214.78873239436621"/>
+            <point key="canvasLocation" x="1468" y="-194"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YfT-Re-xOr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mQV-EJ-UK1" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="circle.circle.fill" catalog="system" id="dvq-mQ-QK6"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mh7-Tk-Sjx">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bXB-c7-hC2" kind="relationship" relationship="rootViewController" id="x5Q-sn-0uS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kkv-24-5wr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="688" y="477"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="u8f-tV-v7b">
+            <objects>
+                <viewController id="ElI-lM-9cz" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="A6u-o9-Vj2">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="JJx-c8-E2p"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FtP-Ik-dvf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="688" y="1156"/>
         </scene>
     </scenes>
     <resources>
@@ -422,6 +473,7 @@
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <image name="chevron.down" catalog="system" width="128" height="70"/>
+        <image name="circle.circle.fill" catalog="system" width="128" height="123"/>
         <image name="deleteTrashButton" width="32" height="32"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="plus" catalog="system" width="128" height="113"/>

@@ -31,6 +31,8 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         customNavigationBar.setBackgroundImage(UIImage(), for: .default)
         customNavigationBar.shadowImage = UIImage()
         
+        addTaskButtonLabel.tintColor = .deepViolet
+        
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         setButtonColors(for: todayTasksButton)
