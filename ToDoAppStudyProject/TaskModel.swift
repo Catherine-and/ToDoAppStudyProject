@@ -18,6 +18,7 @@ class Task: Object {
     
     convenience init(title: String, descriptionText: String? = nil, date: String? = nil, toBeDoneDate: Date? = nil) {
         self.init()
+        
         self.title = title
         self.descriptionText = descriptionText
         self.date = date

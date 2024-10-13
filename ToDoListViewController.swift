@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class ToDoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ToDoListViewController: UIViewController {
     
     var tasks: Results<Task>!
     var filteredTasks: Results<Task>!
@@ -36,7 +36,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         setButtonColors(for: todayTasksButton)
-
+        
         tasks = realm.objects(Task.self)
         filteredTasks = tasks
         
@@ -51,28 +51,6 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewWillAppear(animated)
         filterTasks(by: todayTasksButton)
         
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredTasks.isEmpty ? 0 : filteredTasks.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! CustomTableViewCell
-        
-        let task = filteredTasks[indexPath.row]
-        
-        cell.titleLabel.text = task.title
-        cell.descriptionLabel.text = task.descriptionText
-        cell.dateLabel.textColor = .blue
-        cell.dateLabel.text = formatDateForCell(task.toBeDoneDate, for: cell.dateLabel)
-        cell.isChecked = task.isDone
-        let imageName = cell.isChecked ? "selected" : "unselected"
-        cell.checkBoxButton.setImage(UIImage(named: imageName), for: .normal)
-        cell.delegate = self
-        
-        return cell
     }
     
     func formatDateForCell(_ date: Date?, for text: UILabel) -> String {
@@ -177,6 +155,32 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
         filterTasks(by: sender)
     }
     
+    
+}
+
+extension ToDoListViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filteredTasks.isEmpty ? 0 : filteredTasks.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! CustomTableViewCell
+        
+        let task = filteredTasks[indexPath.row]
+        
+        cell.titleLabel.text = task.title
+        cell.descriptionLabel.text = task.descriptionText
+        cell.dateLabel.textColor = .blue
+        cell.dateLabel.text = formatDateForCell(task.toBeDoneDate, for: cell.dateLabel)
+        cell.isChecked = task.isDone
+        let imageName = cell.isChecked ? "selected" : "unselected"
+        cell.checkBoxButton.setImage(UIImage(named: imageName), for: .normal)
+        cell.delegate = self
+        
+        return cell
+    }
     
 }
 

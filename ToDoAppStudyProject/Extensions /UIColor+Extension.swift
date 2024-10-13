@@ -14,7 +14,6 @@ static var lightBlue: UIColor {
 }
   
     static var deepViolet: UIColor {
-        
         UIColor(red: 0.318, green: 0.443, blue: 0.945, alpha: 1)
     }
 }
