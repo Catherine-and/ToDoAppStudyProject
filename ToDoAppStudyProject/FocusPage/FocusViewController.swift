@@ -16,7 +16,7 @@ class FocusViewController: UIViewController{
         
         return tableView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightBlue
@@ -58,18 +58,33 @@ class FocusViewController: UIViewController{
 extension FocusViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-            let cell = tableView.dequeueReusableCell(withIdentifier: FocusCell.identifier, for: indexPath) as! FocusCell
-            cell.configure(with: "Study", timeTitle: "50m")
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: FocusCell.identifier, for: indexPath) as! FocusCell
+        cell.configure(with: "Study", timeTitle: "50m")
+        cell.playButton.addTarget(self, action: #selector(startFocus), for: .touchUpInside)
         
         return cell
+    }
+    
+    @objc func startFocus() {
+        
+        let  stopWatchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "StopWatchViewController") as! StopWatchViewController
+        
+        stopWatchVC.playBtnTapped()
+        
+        if let sheet = stopWatchVC.sheetPresentationController {
+            sheet.detents = [.large()]
+        }
+        self.present(stopWatchVC, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+
 }

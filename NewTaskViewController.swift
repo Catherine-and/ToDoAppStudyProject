@@ -74,7 +74,7 @@ class NewTaskViewController: UIViewController {
                            date: dateTitle,
                            toBeDoneDate: selectedDate)
         
-        StorageManager.saveObject(newTask)
+        TaskStorageManager.saveObject(newTask)
     }
     
     

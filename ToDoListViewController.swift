@@ -144,11 +144,13 @@ class ToDoListViewController: UIViewController {
         currentFilter = sender
         filterTasks(by: sender)
     }
+    
     @IBAction func overdueBarButtonTapped(_ sender: UIBarButtonItem) {
         setButtonColors(for: sender)
         currentFilter = sender
         filterTasks(by: sender)
     }
+    
     @IBAction func todayBarButtonTapped(_ sender: UIBarButtonItem) {
         setButtonColors(for: sender)
         currentFilter = sender
@@ -218,7 +220,7 @@ extension ToDoListViewController: ExistedTaskVCDelegate {
     
     func didDeleteTask(task: Task) {
         if let index = tasks.index(of: task) {
-            StorageManager.deleteObject(task)
+            TaskStorageManager.deleteObject(task)
             
             tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
         }

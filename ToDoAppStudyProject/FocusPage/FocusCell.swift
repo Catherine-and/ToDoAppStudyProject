@@ -12,7 +12,8 @@ class FocusCell: UITableViewCell {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var focusNameLabel: UILabel!
     @IBOutlet weak var focusTimeLabel: UILabel!
-
+    @IBOutlet weak var playButton: UIButton!
+    
     static let identifier = "FocusCell"
 
     static func nib() -> UINib {

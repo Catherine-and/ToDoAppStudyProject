@@ -16,6 +16,7 @@ class StopWatchViewController: UIViewController {
     
     var startStopWatch = true
     
+    var stopwatchText = ""
     
     lazy var stopwatchLabel: UILabel = {
         let label = UILabel()
@@ -81,6 +82,7 @@ class StopWatchViewController: UIViewController {
         addSubviews()
         
         setupConstraints()
+        
         DispatchQueue.main.async {
             
             self.playButton.addTarget(self, action: #selector(self.playBtnTapped), for: .touchUpInside)
@@ -108,7 +110,7 @@ class StopWatchViewController: UIViewController {
         
     }
     @objc func updateStopwatch() {
-        print("start working")
+        
         fractions += 1
         if fractions == 100 {
             seconds += 1
@@ -120,11 +122,11 @@ class StopWatchViewController: UIViewController {
             seconds = 0
         }
         
-        
         let secondsString = String(format: "%02d", seconds)
         let minutesString = String(format: "%02d", minutes)
         
-        stopwatchLabel.text = "\(minutesString):\(secondsString)"
+        stopwatchText = "\(minutesString):\(secondsString)"
+        stopwatchLabel.text = stopwatchText
     }
     
     private func addSubviews() {

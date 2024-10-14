@@ -50,8 +50,8 @@
                             <constraint firstAttribute="trailing" secondItem="wPy-aL-kum" secondAttribute="trailing" constant="6" id="Jft-zE-sXO"/>
                             <constraint firstItem="wPy-aL-kum" firstAttribute="leading" secondItem="FRf-nz-WeI" secondAttribute="trailing" constant="16" id="P7M-Ja-FBs"/>
                             <constraint firstAttribute="bottom" secondItem="FRf-nz-WeI" secondAttribute="bottom" constant="16" id="RbF-tg-qVl"/>
-                            <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="wPy-aL-kum" secondAttribute="bottom" constant="22" id="euB-AS-zqr"/>
-                            <constraint firstItem="wPy-aL-kum" firstAttribute="top" relation="lessThanOrEqual" secondItem="dUC-Kv-Xa7" secondAttribute="top" constant="22" id="kRO-sx-Lgx"/>
+                            <constraint firstAttribute="bottom" secondItem="wPy-aL-kum" secondAttribute="bottom" constant="22" id="euB-AS-zqr"/>
+                            <constraint firstItem="wPy-aL-kum" firstAttribute="top" secondItem="dUC-Kv-Xa7" secondAttribute="top" constant="22" id="kRO-sx-Lgx"/>
                         </constraints>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="temporaryFocusIcon" translatesAutoresizingMaskIntoConstraints="NO" id="BMo-w8-IgP">
@@ -78,6 +78,7 @@
                 <outlet property="focusNameLabel" destination="KRD-8g-6ZS" id="3fU-Mx-7cx"/>
                 <outlet property="focusTimeLabel" destination="ygI-yn-LgZ" id="Rs3-tW-xQ7"/>
                 <outlet property="iconImageView" destination="BMo-w8-IgP" id="dpk-xL-N91"/>
+                <outlet property="playButton" destination="wPy-aL-kum" id="SCi-o9-SBY"/>
             </connections>
             <point key="canvasLocation" x="-376.3358778625954" y="-22.183098591549296"/>
         </tableViewCell>

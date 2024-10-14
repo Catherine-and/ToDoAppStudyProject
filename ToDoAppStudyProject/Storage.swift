@@ -9,7 +9,7 @@ import RealmSwift
 
 let realm = try! Realm()
 
-class StorageManager {
+class TaskStorageManager {
     
     static func saveObject (_ task: Task) {
         
@@ -26,5 +26,24 @@ class StorageManager {
         }
     }
     
+    
+}
+
+class FocusStorageManager {
+    
+    static func saveObject (_ focus: Focus) {
+        
+        try! realm.write {
+            realm.add(focus)
+        }
+        
+    }
+    
+    static func deleteObject (_ focus: Focus) {
+        
+        try! realm.write {
+            realm.delete(focus)
+        }
+    }
     
 }
