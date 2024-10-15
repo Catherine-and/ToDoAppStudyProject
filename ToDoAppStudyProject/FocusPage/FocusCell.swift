@@ -28,7 +28,7 @@ class FocusCell: UITableViewCell {
                      bundle: nil)
     }
     
-    public func configure(with title: String, timeTitle: String) {
+    public func configure(with title: String, timeTitle: String?) {
         
         focusNameLabel.text = title
         focusTimeLabel.text = timeTitle

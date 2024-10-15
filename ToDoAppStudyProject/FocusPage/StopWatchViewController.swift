@@ -10,7 +10,8 @@ import UIKit
 class StopWatchViewController: UIViewController {
     
     var scheduledTimer = Timer()
-
+    var currentFocus: Focus?
+    
     var startTime: Date?
     var stopTime: Date?
     
@@ -141,6 +142,13 @@ class StopWatchViewController: UIViewController {
         setStopTime(date: nil)
         setStartTime(date: nil)
         stopwatchLabel.text = makeTimeString(min: 0, sec: 0)
+        
+        if let focus = currentFocus {
+            try? realm.write {
+                focus.time = stopwatchText
+            }
+        }
+        
         stopTimer()
     }
     

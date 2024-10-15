@@ -12,10 +12,6 @@ class FocusViewController: UIViewController{
     
     var focuses: Results<Focus>!
     
-    @IBOutlet weak var topBar: UINavigationItem!
-    
-    
-    
     var tableView: UITableView = {
         
         let tableView = UITableView()
@@ -24,24 +20,47 @@ class FocusViewController: UIViewController{
         return tableView
     }()
     
-    lazy var addFocusBtn: UIBarButtonItem = {
-        let button = UIBarButtonItem()
-        button.image = UIImage(systemName: "add")
-        
-        return button
-    }()
-    
+    @IBOutlet weak var addFocusBtn: UIBarButtonItem!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        focuses = realm.objects(Focus.self)
+
         view.backgroundColor = .lightBlue
-        self.topBar.rightBarButtonItem = addFocusBtn
-        
+       
         tableView.register(FocusCell.nib(), forCellReuseIdentifier: FocusCell.identifier)
         
         configureTableView()
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFocus))
+        navigationItem.rightBarButtonItem?.tintColor = .black
         
+    }
+    
+     @objc func addFocus() {
+      
+      let alert = UIAlertController(title: "New focus",
+                                    message: "",
+                                    preferredStyle: .alert)
+         
+         alert.addTextField()
+
+         let saveButton = UIAlertAction(title: "Save", style: .default) { _ in
+             if let focusName = alert.textFields?.first?.text {
+                 
+                 let newFocus = Focus(title: focusName, 
+                                      time: "0m")
+                 FocusStorageManager.saveObject(newFocus)
+                 
+                 self.tableView.reloadData()
+             }
+         }
+         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+         alert.addAction(saveButton)
+         alert.addAction(cancel)
+         
+         present(alert, animated: true)
     }
     
     func configureTableView() {
@@ -70,13 +89,15 @@ class FocusViewController: UIViewController{
 extension FocusViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return  focuses.isEmpty ? 0 : focuses.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let focus = focuses[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: FocusCell.identifier, for: indexPath) as! FocusCell
-        cell.configure(with: "Study", timeTitle: "50m")
+        cell.configure(with: focus.title, timeTitle: focus.time)
         cell.playButton.addTarget(self, action: #selector(startFocus), for: .touchUpInside)
         
         return cell

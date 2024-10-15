@@ -208,7 +208,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Focus" id="UCG-xC-swH"/>
                     <connections>
-                        <outlet property="topBar" destination="UCG-xC-swH" id="5LF-sB-4AR"/>
                         <segue destination="ElI-lM-9cz" kind="presentation" identifier="MoveToStopwatchVC" id="QFF-MZ-smh"/>
                     </connections>
                 </viewController>
