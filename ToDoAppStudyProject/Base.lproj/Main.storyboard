@@ -207,6 +207,10 @@
                         <color key="backgroundColor" red="0.93333333730000001" green="0.94901967050000002" blue="0.99215686319999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" title="Focus" id="UCG-xC-swH"/>
+                    <connections>
+                        <outlet property="topBar" destination="UCG-xC-swH" id="5LF-sB-4AR"/>
+                        <segue destination="ElI-lM-9cz" kind="presentation" identifier="MoveToStopwatchVC" id="QFF-MZ-smh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fIs-GW-Huf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -457,7 +461,7 @@
             <objects>
                 <viewController storyboardIdentifier="StopWatchViewController" modalPresentationStyle="pageSheet" id="ElI-lM-9cz" customClass="StopWatchViewController" customModule="ToDoAppStudyProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="A6u-o9-Vj2">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="JJx-c8-E2p"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

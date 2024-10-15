@@ -6,8 +6,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FocusViewController: UIViewController{
+    
+    var focuses: Results<Focus>!
+    
+    @IBOutlet weak var topBar: UINavigationItem!
+    
+    
     
     var tableView: UITableView = {
         
@@ -17,9 +24,18 @@ class FocusViewController: UIViewController{
         return tableView
     }()
     
+    lazy var addFocusBtn: UIBarButtonItem = {
+        let button = UIBarButtonItem()
+        button.image = UIImage(systemName: "add")
+        
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .lightBlue
+        self.topBar.rightBarButtonItem = addFocusBtn
         
         tableView.register(FocusCell.nib(), forCellReuseIdentifier: FocusCell.identifier)
         
@@ -38,18 +54,14 @@ class FocusViewController: UIViewController{
         tableView.backgroundColor = .lightBlue
         tableView.pin(to: view)
         tableView.separatorStyle = .none
-        
-        
     }
     
     private func setTableViewDelegates() {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
     }
-    
-    
+
 }
 
 
@@ -88,3 +100,13 @@ extension FocusViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
 }
+
+//extension FocusViewController: FocusCellDelegate {
+//    
+//    func cellTapped(cell: FocusCell) {
+//        if let indexPath = tableView.indexPath(for: cell) {
+//            performSegue(withIdentifier: "MoveToStopwatchVC", sender: indexPath)
+//        }
+//    }
+//    
+//}

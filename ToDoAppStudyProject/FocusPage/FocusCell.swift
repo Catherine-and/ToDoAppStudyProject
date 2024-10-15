@@ -7,17 +7,24 @@
 
 import UIKit
 
-class FocusCell: UITableViewCell {
 
+protocol FocusCellDelegate: AnyObject {
+    func cellTapped(cell: FocusCell)
+}
+
+class FocusCell: UITableViewCell {
+    
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var focusNameLabel: UILabel!
     @IBOutlet weak var focusTimeLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     
+    weak var delegate: FocusCellDelegate?
+    
     static let identifier = "FocusCell"
-
+    
     static func nib() -> UINib {
-        return UINib(nibName: "FocusCell", 
+        return UINib(nibName: "FocusCell",
                      bundle: nil)
     }
     
@@ -31,13 +38,18 @@ class FocusCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
+        let tapGesture = UITapGestureRecognizer(target: self , action: #selector(handleTap))
+        self.contentView.addGestureRecognizer(tapGesture)
+        
     }
     
-
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+    }
+    
+    @objc func handleTap() {
+        delegate?.cellTapped(cell: self)
+    }
+    
 }
