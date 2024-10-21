@@ -5,9 +5,16 @@
 //  Created by Ekaterina Isaeva on 12.10.2024.
 //
 
+protocol StopWatchViewControllerDelegate: AnyObject {
+    
+   func didChangeFocus(focus: Focus)
+}
+
 import UIKit
 
 class StopWatchViewController: UIViewController {
+    
+    weak var delegate: StopWatchViewControllerDelegate?
     
     var scheduledTimer = Timer()
     var currentFocus: Focus?
@@ -22,13 +29,27 @@ class StopWatchViewController: UIViewController {
     
     var timerCounting = false
     
-    var stopwatchText = ""
+    //var stopwatchText = ""
+    var timerResultInt = 0
+    
+    lazy var nameFocusLabel: UILabel = {
+        
+        let label = UILabel()
+        
+        label.text = ""
+        label.font = .systemFont(ofSize: 18, weight: .regular)
+        label.textAlignment = .center
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
     
     lazy var stopwatchLabel: UILabel = {
         
         let label = UILabel()
+        
         label.text = "00:00"
-        label.font = .systemFont(ofSize: 86, weight: .light)
         label.font = .monospacedDigitSystemFont(ofSize: 86, weight: .light)
         label.textAlignment = .center
         label.textColor = .black
@@ -74,7 +95,8 @@ class StopWatchViewController: UIViewController {
     
     lazy var mainStackView: UIStackView = {
         
-        let view = UIStackView(arrangedSubviews: [stopwatchLabel,
+        let view = UIStackView(arrangedSubviews: [nameFocusLabel,
+                                                  stopwatchLabel,
                                                   buttonsStackView])
         view.axis = .vertical
         view.spacing = 50
@@ -99,7 +121,6 @@ class StopWatchViewController: UIViewController {
             self.playButton.addTarget(self, action: #selector(self.playBtnTapped), for: .touchUpInside)
             self.resetButton.addTarget(self, action: #selector(self.resetBtnTapped), for: .touchUpInside)
         }
-        print("\(timerCounting) after first opening")
 
 //        if timerCounting {
 //            print("\(timerCounting) after second opening")
@@ -139,17 +160,26 @@ class StopWatchViewController: UIViewController {
     
     @objc func resetBtnTapped() {
         
+        if let focus = currentFocus {
+            
+            try? realm.write {
+                currentFocus?.intTime += timerResultInt
+                currentFocus?.time = String("\(focus.intTime)m")
+            }
+            self.delegate?.didChangeFocus(focus: focus)
+        }
+        
+
+        
         setStopTime(date: nil)
         setStartTime(date: nil)
         stopwatchLabel.text = makeTimeString(min: 0, sec: 0)
         
-        if let focus = currentFocus {
-            try? realm.write {
-                focus.time = stopwatchText
-            }
-        }
+        
         
         stopTimer()
+        dismiss(animated: true, completion: nil)
+
     }
     
     func calcRestartTime(start: Date, stop: Date) -> Date {
@@ -188,13 +218,13 @@ class StopWatchViewController: UIViewController {
     func makeTimeString(min: Int, sec: Int) -> String {
         
         var timeString = ""
+        
         timeString += String(format: "%02d", min)
         timeString += ":"
         timeString += String(format: "%02d", sec)
         
-        stopwatchText = String(min) + "m"
-
-        print(stopwatchText)
+        timerResultInt = min
+        
         return timeString
     }
     
@@ -224,7 +254,6 @@ class StopWatchViewController: UIViewController {
                                               userInfo: nil,
                                               repeats: true)
         setTimerCounting(true)
-        print("\(timerCounting) after startTimer")
         playButton.setImage(UIImage(named: "pauseStopwatch"), for: .normal)
     }
     
@@ -232,7 +261,6 @@ class StopWatchViewController: UIViewController {
         scheduledTimer.invalidate()
    
         setTimerCounting(false)
-        print("\(timerCounting) after stopTimer")
 
         playButton.setImage(UIImage(named: "playStopwatch"), for: .normal)
     }

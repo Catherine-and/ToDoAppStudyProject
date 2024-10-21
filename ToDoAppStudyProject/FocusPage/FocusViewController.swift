@@ -35,7 +35,6 @@ class FocusViewController: UIViewController{
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFocus))
         navigationItem.rightBarButtonItem?.tintColor = .black
-        
     }
     
      @objc func addFocus() {
@@ -49,7 +48,7 @@ class FocusViewController: UIViewController{
          let saveButton = UIAlertAction(title: "Save", style: .default) { _ in
              if let focusName = alert.textFields?.first?.text {
                  
-                 let newFocus = Focus(title: focusName, 
+                 let newFocus = Focus(title: focusName,
                                       time: "0m")
                  FocusStorageManager.saveObject(newFocus)
                  
@@ -97,17 +96,28 @@ extension FocusViewController: UITableViewDataSource, UITableViewDelegate {
         let focus = focuses[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: FocusCell.identifier, for: indexPath) as! FocusCell
+        
         cell.configure(with: focus.title, timeTitle: focus.time)
-        cell.playButton.addTarget(self, action: #selector(startFocus), for: .touchUpInside)
+        
+        cell.playButton.tag = indexPath.row
+        cell.playButton.addTarget(self, action: #selector(startFocus(sender:)), for: .touchUpInside)
         
         return cell
     }
     
-    @objc func startFocus() {
+    @objc func startFocus(sender: UIButton) {
         
         let  stopWatchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "StopWatchViewController") as! StopWatchViewController
         
+        let selectedIndex = sender.tag
+        let selectedFocus = focuses[selectedIndex]
+        
+        stopWatchVC.currentFocus = selectedFocus
+        stopWatchVC.nameFocusLabel.text = selectedFocus.title
+        
         stopWatchVC.playBtnTapped()
+        
+        stopWatchVC.delegate = self
         
         if let sheet = stopWatchVC.sheetPresentationController {
             sheet.detents = [.large()]
@@ -122,6 +132,15 @@ extension FocusViewController: UITableViewDataSource, UITableViewDelegate {
 
 }
 
+
+extension FocusViewController: StopWatchViewControllerDelegate {
+    
+    func didChangeFocus(focus: Focus) {
+        tableView.reloadData()
+    }
+    
+    
+}
 //extension FocusViewController: FocusCellDelegate {
 //    
 //    func cellTapped(cell: FocusCell) {

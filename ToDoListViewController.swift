@@ -222,7 +222,9 @@ extension ToDoListViewController: ExistedTaskVCDelegate {
         if let index = tasks.index(of: task) {
             TaskStorageManager.deleteObject(task)
             
-            tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+            tableView.deleteRows(at: [IndexPath(row: index, 
+                                                section: 0)],
+                                                with: .automatic)
         }
     }
     
