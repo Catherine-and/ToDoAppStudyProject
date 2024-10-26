@@ -16,11 +16,12 @@ class SettingsViewController: UIViewController {
     var currentSettings: Settings?
     var currentSwitcher: Switcher?
     
-    var timeForNotifications = ""
+    var chosenTime: Date?
     
     @IBOutlet weak var switchBtn: UISwitch!
     @IBOutlet weak var secondView: UIView!
     @IBOutlet weak var notificationTitle: UILabel!
+    
     @IBOutlet weak var addTimeBtn: UIButton!
     @IBOutlet weak var notificationTimeBtn: UIButton!
     
@@ -31,9 +32,9 @@ class SettingsViewController: UIViewController {
         settings = realm.objects(Settings.self)
         switcher = realm.objects(Switcher.self)
         
-        notificationTimeBtn.setTitle(currentSettings?.pickedTime, for: .normal)
-
+        
         loadSwitchState()
+        loadNotificationTime()
         
         if switchBtn.isOn {
             dispatchNotification()
@@ -43,8 +44,18 @@ class SettingsViewController: UIViewController {
             notificationTimeBtn.isHidden = true
         }
         
-
+        
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let pickedTime = currentSettings {
+            notificationTimeBtn.setTitle(pickedTime.pickedTime, for: .normal)
+        }
+        
+    }
+    
     
     func loadSwitchState() {
         // Проверяем, существует ли текущий объект Switcher в базе данных
@@ -61,6 +72,18 @@ class SettingsViewController: UIViewController {
         
         // Устанавливаем состояние UISwitch в соответствии с данными в базе
         switchBtn.isOn = currentSwitcher?.isSwiched ?? false
+    }
+    
+    func loadNotificationTime() {
+        
+        if let savedSettings = settings.first {
+            currentSettings = savedSettings
+            notificationTimeBtn.setTitle(savedSettings.pickedTime, for: .normal)
+        } else {
+            let newSettings = Settings()
+            SettingsStorageManager.saveObject(newSettings)
+            currentSettings = newSettings
+        }
     }
     
     func checkForPermission() {
@@ -81,7 +104,6 @@ class SettingsViewController: UIViewController {
                     }
                 }
             default: return
-                
             }
         }
     }
@@ -101,13 +123,6 @@ class SettingsViewController: UIViewController {
             minute = pickedTime.pickedMin
         }
         
-        print(hour)
-        
-//        DispatchQueue.main.async {
-//            self.notificationTimeBtn.setTitle(self.currentSettings?.pickedTime, for: .normal)
-//
-//        }
-
         let notificationCenter = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
         content.title = title
@@ -129,6 +144,28 @@ class SettingsViewController: UIViewController {
         notificationCenter.add(request)
     }
     
+    // MARK: Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "GoChangeTime" {
+            
+            if let timeNotificationsPickerVC = segue.destination as? TimeNotificationsPickerViewController {
+                
+                if let savedTime = currentSettings?.pickedTime, let time = convertToTime(savedTime) {
+                    timeNotificationsPickerVC.currentPickedTime = time
+                } else {
+                    timeNotificationsPickerVC.currentPickedTime = Date()
+                }
+            }
+        }
+    }
+    
+    func  convertToTime(_ time: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "H:mm"
+        return dateFormatter.date(from: time)
+    }
     
     @IBAction func turnOnOffNotifications(_ sender: UISwitch) {
         
@@ -150,22 +187,27 @@ class SettingsViewController: UIViewController {
         
         guard let timeNotificationsPickerVC = segue.source as? TimeNotificationsPickerViewController else { return }
         
-        if timeNotificationsPickerVC.currentPickedTime?.pickedTime != nil {
+        let newTime = Settings(pickedTime: timeNotificationsPickerVC.timeValueString,
+                               pickedHour: timeNotificationsPickerVC.hour,
+                               pickedMin: timeNotificationsPickerVC.minute)
+        
+        if currentSettings != nil  {
+            
             try? realm.write {
-                timeNotificationsPickerVC.currentPickedTime?.pickedTime = timeNotificationsPickerVC.timeValueString
-                timeNotificationsPickerVC.currentPickedTime?.pickedHour = timeNotificationsPickerVC.hour
-                timeNotificationsPickerVC.currentPickedTime?.pickedMin = timeNotificationsPickerVC.minute
+                currentSettings?.pickedTime = newTime.pickedTime
+                currentSettings?.pickedHour = newTime.pickedHour
+                currentSettings?.pickedMin = newTime.pickedMin
             }
         } else {
-            let newTime = Settings(pickedTime: timeNotificationsPickerVC.timeValueString,
-                                   pickedHour: timeNotificationsPickerVC.hour,
-                                   pickedMin: timeNotificationsPickerVC.minute)
             SettingsStorageManager.saveObject(newTime)
             currentSettings = newTime
         }
+        
         dispatchNotification()
+        
         notificationTimeBtn.setTitle(currentSettings?.pickedTime, for: .normal)
         
+        chosenTime = timeNotificationsPickerVC.currentPickedTime
     }
     
     

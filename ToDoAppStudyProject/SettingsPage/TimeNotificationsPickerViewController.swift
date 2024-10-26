@@ -10,7 +10,7 @@ import UIKit
 class TimeNotificationsPickerViewController: UIViewController {
 
     
-    var currentPickedTime: Settings?
+    var currentPickedTime: Date?
     
     var timeValueString = ""
     var hour = 0
@@ -21,6 +21,9 @@ class TimeNotificationsPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        timePicker.date = currentPickedTime ?? Date()
+        
+
     }
     
     @IBAction func chooseTime(_ sender: UIDatePicker) {
@@ -36,6 +39,7 @@ class TimeNotificationsPickerViewController: UIViewController {
             let calendar = Calendar.current
             hour = calendar.component(.hour, from: date)
             minute = calendar.component(.minute, from: date)
+            currentPickedTime = date
             
         }
     }

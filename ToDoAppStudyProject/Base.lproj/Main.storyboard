@@ -195,7 +195,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D1H-xF-mgB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3329" y="-861"/>
+            <point key="canvasLocation" x="3331" y="-861"/>
         </scene>
         <!--Focus-->
         <scene sceneID="9yo-uM-oQJ">
@@ -447,6 +447,9 @@
                                         <buttonConfiguration key="configuration" style="filled" title="9:00" cornerStyle="capsule">
                                             <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="cAI-YJ-WxQ" kind="presentation" identifier="GoChangeTime" id="7bh-Fx-7X9"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPi-KO-355">
                                         <rect key="frame" x="92" y="53" width="70" height="35"/>
@@ -490,7 +493,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfZ-9O-Blb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="I0F-c0-2HJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3330.5343511450378" y="537.32394366197184"/>
+            <point key="canvasLocation" x="3323" y="537"/>
         </scene>
         <!--Time Notifications Picker View Controller-->
         <scene sceneID="vdA-wg-ZPs">
@@ -504,7 +507,7 @@
                                 <rect key="frame" x="37.666666666666657" y="254.66666666666663" width="318" height="319"/>
                                 <subviews>
                                     <datePicker contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="3z6-Ig-iq3">
-                                        <rect key="frame" x="-5" y="52" width="327" height="216"/>
+                                        <rect key="frame" x="-4.6666666666666572" y="51.333333333333343" width="327" height="216.00000000000003"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="216" id="8pg-73-Ss7"/>
                                             <constraint firstAttribute="width" constant="327" id="Mfk-xq-yWO"/>
@@ -593,7 +596,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEq-a6-P5w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4133.5877862595416" y="536.61971830985919"/>
+            <point key="canvasLocation" x="4189" y="537"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="esD-Ga-KZY">
@@ -657,7 +660,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cmc-j7-X8w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2402" y="-861"/>
+            <point key="canvasLocation" x="2401" y="-861"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YfT-Re-xOr">
@@ -710,9 +713,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L1M-SD-eBa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2411" y="538"/>
+            <point key="canvasLocation" x="2401" y="537"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="7bh-Fx-7X9"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.up" catalog="system" width="118" height="128"/>
         <image name="calendar" catalog="system" width="128" height="107"/>
@@ -734,7 +740,7 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
