@@ -35,6 +35,7 @@ class ToDoListViewController: UIViewController {
         
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
+        
         setButtonColors(for: todayTasksButton)
         
         tasks = realm.objects(Task.self)
@@ -43,16 +44,12 @@ class ToDoListViewController: UIViewController {
         let nib = UINib(nibName: "CustomTableViewCell", bundle: nil)
         
         tableView.register(nib, forCellReuseIdentifier: "CustomTableViewCell")
+        
         tableView.delegate = self
         tableView.dataSource = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         filterTasks(by: todayTasksButton)
-        
     }
-    
+            
     func formatDateForCell(_ date: Date?, for text: UILabel) -> String {
         guard let date = date else { return "" }
         
@@ -219,7 +216,7 @@ extension ToDoListViewController: CustomTableViewCellDelegate {
 extension ToDoListViewController: ExistedTaskVCDelegate {
     
     func didDeleteTask(task: Task) {
-        if let index = tasks.index(of: task) {
+        if let index = filteredTasks.index(of: task) {
             TaskStorageManager.deleteObject(task)
             
             tableView.deleteRows(at: [IndexPath(row: index, 
@@ -229,7 +226,7 @@ extension ToDoListViewController: ExistedTaskVCDelegate {
     }
     
     func didChangeTask(task: Task) {
-        filterTasks(by: currentFilter)
+        filterTasks(by: currentFilter ?? todayTasksButton)
         tableView.reloadData()
     }
 }
