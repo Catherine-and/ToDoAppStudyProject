@@ -24,7 +24,8 @@ class FocusViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let realm = try! Realm()
+
         focuses = realm.objects(Focus.self)
 
         view.backgroundColor = .lightBlue

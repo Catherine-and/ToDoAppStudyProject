@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 protocol ExistedTaskVCDelegate: AnyObject {
     func didDeleteTask(task: Task)
@@ -94,6 +95,7 @@ class ExistedTaskViewController: UIViewController {
         
         if isTaskChanged, let task = currentTask {
             
+            let realm = try! Realm()
             try? realm.write {
                 task.title = titleTF.text
                 task.descriptionText = descriptionTView.text

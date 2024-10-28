@@ -28,6 +28,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let realm = try! Realm()
         
         settings = realm.objects(Settings.self)
         switcher = realm.objects(Switcher.self)
@@ -43,7 +44,6 @@ class SettingsViewController: UIViewController {
             addTimeBtn.isHidden = true
             notificationTimeBtn.isHidden = true
         }
-        
         
     }
     
@@ -64,6 +64,8 @@ class SettingsViewController: UIViewController {
         } else {
             // Если объект не найден, создаем и сохраняем новый
             let newSwitchStatus = Switcher()
+            let realm = try! Realm()
+            
             try? realm.write {
                 realm.add(newSwitchStatus)
             }
@@ -90,20 +92,26 @@ class SettingsViewController: UIViewController {
         
         let center = UNUserNotificationCenter.current()
         
-        center.getNotificationSettings { settings in
+        center.getNotificationSettings { [weak self] settings in
+            guard let self = self else { return }
             
             switch settings.authorizationStatus {
             case .authorized:
-                self.dispatchNotification()
+                DispatchQueue.main.async {
+                    self.dispatchNotification()
+                }
             case .denied:
                 return
             case .notDetermined:
                 center.requestAuthorization(options: [.alert, .sound]) { didAllow, error in
                     if didAllow {
-                        self.dispatchNotification()
+                        DispatchQueue.main.async {
+                            self.dispatchNotification()
+                        }
                     }
                 }
-            default: return
+            default:
+                return
             }
         }
     }
@@ -169,19 +177,23 @@ class SettingsViewController: UIViewController {
     
     @IBAction func turnOnOffNotifications(_ sender: UISwitch) {
         
-        try? realm.write {
-            currentSwitcher?.isSwiched = sender.isOn
-        }
-        
-        notificationTimeBtn.isHidden = !sender.isOn
-        secondView.isHidden = !sender.isOn
-        addTimeBtn.isHidden = !sender.isOn
-        
-        if sender.isOn {
-            checkForPermission()
-            dispatchNotification()
+        DispatchQueue.main.async {
+            let realm = try! Realm()
+            try? realm.write {
+                self.currentSwitcher?.isSwiched = sender.isOn
+            }
+            
+            self.notificationTimeBtn.isHidden = !sender.isOn
+            self.secondView.isHidden = !sender.isOn
+            self.addTimeBtn.isHidden = !sender.isOn
+            
+            if sender.isOn {
+                self.checkForPermission()
+                self.dispatchNotification()
+            }
         }
     }
+    
     
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         
@@ -193,6 +205,7 @@ class SettingsViewController: UIViewController {
         
         if currentSettings != nil  {
             
+            let realm = try! Realm()
             try? realm.write {
                 currentSettings?.pickedTime = newTime.pickedTime
                 currentSettings?.pickedHour = newTime.pickedHour
@@ -204,11 +217,20 @@ class SettingsViewController: UIViewController {
         }
         
         dispatchNotification()
-        
+        notificationTimeBtn.isHidden = false
         notificationTimeBtn.setTitle(currentSettings?.pickedTime, for: .normal)
         
         chosenTime = timeNotificationsPickerVC.currentPickedTime
     }
     
+    @IBAction func deleteObjects (_ segue: UIStoryboardSegue) {
+        
+        if let setting = currentSettings {
+            SettingsStorageManager.deleteObject(setting)
+            currentSettings = nil
+            notificationTimeBtn.isHidden = true
+            
+        }
+    }
     
 }

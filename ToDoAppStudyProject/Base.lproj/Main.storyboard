@@ -546,6 +546,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title="Clear">
                                             <fontDescription key="titleFontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="I0F-c0-2HJ" kind="unwind" unwindAction="deleteObjects:" id="c6H-3g-SKh"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1W-rI-7SG">
                                         <rect key="frame" x="139.33333333333334" y="17.000000000000028" width="39" height="21"/>

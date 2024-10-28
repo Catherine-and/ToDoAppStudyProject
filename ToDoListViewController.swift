@@ -28,6 +28,9 @@ class ToDoListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let realm = try! Realm()
+        tasks = realm.objects(Task.self)
+        
         customNavigationBar.setBackgroundImage(UIImage(), for: .default)
         customNavigationBar.shadowImage = UIImage()
         
@@ -37,8 +40,7 @@ class ToDoListViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         
         setButtonColors(for: todayTasksButton)
-        
-        tasks = realm.objects(Task.self)
+    
         filteredTasks = tasks
         
         let nib = UINib(nibName: "CustomTableViewCell", bundle: nil)
@@ -196,9 +198,13 @@ extension ToDoListViewController: CustomTableViewCellDelegate {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         let task = filteredTasks[indexPath.row]
         
+        let realm = try! Realm()
+        
+        tasks = realm.objects(Task.self)
         try! realm.write {
             task.isDone = cell.isChecked
         }
+        
         tableView.reloadRows(at: [indexPath], with: .automatic)
         
     }

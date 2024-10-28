@@ -9,7 +9,6 @@ import UIKit
 
 class TimeNotificationsPickerViewController: UIViewController {
 
-    
     var currentPickedTime: Date?
     
     var timeValueString = ""
@@ -22,8 +21,7 @@ class TimeNotificationsPickerViewController: UIViewController {
         super.viewDidLoad()
         
         timePicker.date = currentPickedTime ?? Date()
-        
-
+     
     }
     
     @IBAction func chooseTime(_ sender: UIDatePicker) {

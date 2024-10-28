@@ -11,6 +11,7 @@ protocol StopWatchViewControllerDelegate: AnyObject {
 }
 
 import UIKit
+import RealmSwift
 
 class StopWatchViewController: UIViewController {
     
@@ -161,7 +162,7 @@ class StopWatchViewController: UIViewController {
     @objc func resetBtnTapped() {
         
         if let focus = currentFocus {
-            
+            let realm = try! Realm()
             try? realm.write {
                 currentFocus?.intTime += timerResultInt
                 currentFocus?.time = String("\(focus.intTime)m")
