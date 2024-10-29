@@ -85,7 +85,6 @@ class ToDoListViewController: UIViewController {
             let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
             
             filteredTasks = tasks.filter("toBeDoneDate >= %@ AND toBeDoneDate < %@", startOfDay, endOfDay)
-            
         case overdueTasksButton:
             let startOfDay = calendar.startOfDay(for: today)
             filteredTasks = tasks.filter("toBeDoneDate < %@", startOfDay)

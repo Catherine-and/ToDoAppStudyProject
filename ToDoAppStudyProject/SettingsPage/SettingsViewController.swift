@@ -30,6 +30,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         let realm = try! Realm()
         
+
         settings = realm.objects(Settings.self)
         switcher = realm.objects(Switcher.self)
         
@@ -44,14 +45,20 @@ class SettingsViewController: UIViewController {
             addTimeBtn.isHidden = true
             notificationTimeBtn.isHidden = true
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let pickedTime = currentSettings {
+       
+        if currentSettings?.pickedTime != nil {
+            let pickedTime = currentSettings!
             notificationTimeBtn.setTitle(pickedTime.pickedTime, for: .normal)
+            addTimeBtn.isHidden = true
+        } else {
+            notificationTimeBtn.isHidden = true
+            addTimeBtn.isHidden = false
+
         }
         
     }
@@ -118,8 +125,12 @@ class SettingsViewController: UIViewController {
     
     func dispatchNotification() {
         
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEE dd MMM"
+
         let id = "my notification"
-        let title = "My app"
+        let title = dateFormatter.string(from: Date())
         let body = "Let's go running"
         let isDaily = true
         
@@ -218,6 +229,8 @@ class SettingsViewController: UIViewController {
         
         dispatchNotification()
         notificationTimeBtn.isHidden = false
+        addTimeBtn.isHidden = true
+
         notificationTimeBtn.setTitle(currentSettings?.pickedTime, for: .normal)
         
         chosenTime = timeNotificationsPickerVC.currentPickedTime
@@ -229,6 +242,8 @@ class SettingsViewController: UIViewController {
             SettingsStorageManager.deleteObject(setting)
             currentSettings = nil
             notificationTimeBtn.isHidden = true
+            addTimeBtn.isHidden = false
+
             
         }
     }

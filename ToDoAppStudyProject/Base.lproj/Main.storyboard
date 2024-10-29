@@ -386,15 +386,15 @@
                                 <rect key="frame" x="8" y="119" width="377" height="107"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Daily Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YlL-fc-due">
-                                        <rect key="frame" x="16" y="16" width="138" height="21"/>
+                                        <rect key="frame" x="16" y="15.999999999999998" width="137.66666666666666" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An overview of Today's tasks at a fixed time every day (including overdue and all-day tasks). " lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNr-V5-xPs">
-                                        <rect key="frame" x="16" y="47" width="230" height="44"/>
+                                        <rect key="frame" x="16" y="46" width="220" height="45"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="230" id="S0R-Em-hEa"/>
+                                            <constraint firstAttribute="width" constant="220" id="iPm-tS-9DP"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -417,6 +417,7 @@
                                     <constraint firstAttribute="bottom" secondItem="hNr-V5-xPs" secondAttribute="bottom" constant="16" id="DHh-OZ-e1i"/>
                                     <constraint firstItem="hNr-V5-xPs" firstAttribute="leading" secondItem="0BB-GU-ppF" secondAttribute="leading" constant="16" id="cdu-VJ-BrA"/>
                                     <constraint firstAttribute="height" constant="107" id="fb1-qI-pru"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hNr-V5-xPs" secondAttribute="trailing" constant="20" symbolic="YES" id="hil-fy-x7G"/>
                                     <constraint firstItem="hNr-V5-xPs" firstAttribute="top" secondItem="YlL-fc-due" secondAttribute="bottom" constant="10" id="nCo-Ce-yMb"/>
                                     <constraint firstAttribute="trailing" secondItem="Ea2-4H-Q4V" secondAttribute="trailing" constant="16" id="oPC-0k-MHf"/>
                                     <constraint firstAttribute="width" constant="377" id="pCT-p9-Q6t"/>
@@ -428,44 +429,52 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5nd-FD-WNt">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5nd-FD-WNt">
                                 <rect key="frame" x="8" y="246" width="377" height="107"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" fixedFrame="YES" text="Notification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpf-Ma-BN4">
-                                        <rect key="frame" x="16" y="16" width="88" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Notification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpf-Ma-BN4">
+                                        <rect key="frame" x="16" y="15.999999999999998" width="87.666666666666671" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKT-cd-ith">
-                                        <rect key="frame" x="16" y="53" width="68" height="33"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" name="mainColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="9:00" cornerStyle="capsule">
-                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <segue destination="cAI-YJ-WxQ" kind="presentation" identifier="GoChangeTime" id="7bh-Fx-7X9"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPi-KO-355">
-                                        <rect key="frame" x="92" y="53" width="70" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" name="mainColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title=" Add">
-                                            <imageReference key="image" image="plus" catalog="system" symbolScale="medium"/>
-                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <segue destination="cAI-YJ-WxQ" kind="presentation" id="CnE-Io-1eh"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="pdx-c0-hA8">
+                                        <rect key="frame" x="16" y="52.333333333333314" width="145.33333333333334" height="34.333333333333343"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKT-cd-ith">
+                                                <rect key="frame" x="0.0" y="0.0" width="69.666666666666671" height="34.333333333333336"/>
+                                                <color key="tintColor" name="mainColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="9:00" cornerStyle="capsule">
+                                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <segue destination="cAI-YJ-WxQ" kind="presentation" identifier="GoChangeTime" id="7bh-Fx-7X9"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPi-KO-355">
+                                                <rect key="frame" x="75.666666666666657" y="0.0" width="69.666666666666657" height="34.333333333333336"/>
+                                                <color key="tintColor" name="mainColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" Add">
+                                                    <imageReference key="image" image="plus" catalog="system" symbolScale="medium"/>
+                                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <segue destination="cAI-YJ-WxQ" kind="presentation" id="CnE-Io-1eh"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="pdx-c0-hA8" firstAttribute="top" secondItem="dpf-Ma-BN4" secondAttribute="bottom" constant="16" id="BkW-o0-l6G"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dpf-Ma-BN4" secondAttribute="trailing" constant="20" symbolic="YES" id="J3E-Ka-4LS"/>
+                                    <constraint firstItem="pdx-c0-hA8" firstAttribute="leading" secondItem="5nd-FD-WNt" secondAttribute="leading" constant="16" id="QrP-4Z-zPv"/>
+                                    <constraint firstItem="dpf-Ma-BN4" firstAttribute="top" secondItem="5nd-FD-WNt" secondAttribute="top" constant="16" id="WWw-f0-rAI"/>
+                                    <constraint firstItem="dpf-Ma-BN4" firstAttribute="leading" secondItem="5nd-FD-WNt" secondAttribute="leading" constant="16" id="rhN-MB-VmK"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="6"/>
@@ -476,9 +485,13 @@
                         <viewLayoutGuide key="safeArea" id="cKz-GG-JFm"/>
                         <color key="backgroundColor" name="backgroundColor"/>
                         <constraints>
+                            <constraint firstItem="cKz-GG-JFm" firstAttribute="bottom" secondItem="5nd-FD-WNt" secondAttribute="bottom" constant="416" id="2Qf-Xk-sXO"/>
                             <constraint firstItem="0BB-GU-ppF" firstAttribute="top" secondItem="cKz-GG-JFm" secondAttribute="top" constant="16" id="AmU-Nn-cd6"/>
+                            <constraint firstItem="5nd-FD-WNt" firstAttribute="trailing" secondItem="0BB-GU-ppF" secondAttribute="trailing" id="BT1-60-IjW"/>
                             <constraint firstItem="cKz-GG-JFm" firstAttribute="trailing" secondItem="0BB-GU-ppF" secondAttribute="trailing" constant="8" id="Knx-vE-duG"/>
+                            <constraint firstItem="5nd-FD-WNt" firstAttribute="top" secondItem="0BB-GU-ppF" secondAttribute="bottom" constant="20" id="fIN-TX-Kfh"/>
                             <constraint firstItem="0BB-GU-ppF" firstAttribute="leading" secondItem="cKz-GG-JFm" secondAttribute="leading" constant="8" id="gIP-tt-Cj5"/>
+                            <constraint firstItem="5nd-FD-WNt" firstAttribute="leading" secondItem="0BB-GU-ppF" secondAttribute="leading" id="vFg-S5-bWI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="4Zb-nU-dTY"/>
@@ -493,7 +506,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfZ-9O-Blb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="I0F-c0-2HJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3323" y="537"/>
+            <point key="canvasLocation" x="3322.9007633587785" y="536.61971830985919"/>
         </scene>
         <!--Time Notifications Picker View Controller-->
         <scene sceneID="vdA-wg-ZPs">
@@ -743,7 +756,7 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

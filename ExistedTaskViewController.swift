@@ -188,9 +188,9 @@ extension ExistedTaskViewController: CalendarViewControllerDelegate {
     
     func updateDateButtonColor(with date: Date) {
         if isDateBeforeToday(date) {
-            dateButtonExistedVC.tintColor = .red  // Красный цвет для прошлых дат
+            dateButtonExistedVC.tintColor = .red
         } else {
-            dateButtonExistedVC.tintColor = .blue  // Синий цвет для сегодняшних и будущих дат
+            dateButtonExistedVC.tintColor = .blue
         }
     }
 }
